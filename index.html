@@ -189,28 +189,22 @@ function toggleReflection(event) {
 
 <!-- 🌤️ Local Weather Block -->
 <div id="weather" class="section local-weather-block" style="background-color: #f4f1ec; padding: 1.5em; border-radius: 8px; border: 1px solid #ccc;">
+  <h3 style="color:#003366;">Local Weather</h3>
+  <p>Paste your favorite weather link below. It’ll stay fixed so you can open it every day with one click.</p>
+  <input type="text" id="weatherLink" placeholder="Paste your favorite weather link here" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
+  <div id="weatherDrawer" style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
+  <button onclick="openWeather()" style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open Weather</button>
 
-
-
-
-    <h3 style="color:#003366;">Local Weather</h3>
-    <p>Paste your favorite weather link below. It’ll stay fixed so you can open it every day with one click.</p>
-    <input type="text" id="weatherLink" placeholder="Paste your favorite weather link here" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
-    <div id="weatherDrawer" style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
-    <button onclick="openWeather()" style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open Weather</button>
-
-    <div style="margin-top: 1.5em;">
-      <h4 style="color:#003366;">Need Directions or Flight Info?</h4>
-      <p>Click below to launch your preferred traffic or flight tracker:</p>
-      <div class="snippet" style="font-weight: bold;">
-        <a href="https://www.google.com/maps" target="_blank" style="color: #0645AD; text-decoration: underline;">Google Maps</a>
-        &nbsp;&nbsp;
-        <a href="https://www.waze.com" target="_blank" style="color: #0645AD; text-decoration: underline;">Waze</a>
-        &nbsp;&nbsp;
-        <a href="https://www.flightaware.com" target="_blank" style="color: #0645AD; text-decoration: underline;">FlightAware</a>
-      </div>
+  <div style="margin-top: 1.5em;">
+    <h4 style="color:#003366;">Need Directions or Flight Info?</h4>
+    <p>Click below to launch your preferred traffic or flight tracker:</p>
+    <div class="snippet" style="font-weight: bold;">
+      <a href="https://www.google.com/maps" class="weather-maps" target="_blank" style="color: #0645AD; text-decoration: underline;">Google Maps</a>&nbsp;&nbsp;
+      <a href="https://www.waze.com" class="weather-waze" target="_blank" style="color: #0645AD; text-decoration: underline;">Waze</a>&nbsp;&nbsp;
+      <a href="https://www.flightaware.com" class="weather-flightaware" target="_blank" style="color: #0645AD; text-decoration: underline;">FlightAware</a>
     </div>
   </div>
+</div>
 
 
 
