@@ -185,68 +185,41 @@ function toggleReflection(event) {
 
 
 <!-- 🧭 Local Weather + Local & State News Side-by-Side -->
-<section class="local-pair-wrap" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; margin-top: 2em; max-width: 960px; margin-left: auto; margin-right: auto;">
+<section class="local-pair-wrap" style="display: flex; gap: 1.5em; max-width: 960px; margin: 2em auto;">
+  <!-- 🌤️ Local Weather Block -->
+  <div id="weather" class="section local-weather-block" style="flex: 1; background-color: #f4f1ec; padding: 1.5em; border-radius: 8px; border: 1px solid #ccc; display: flex; flex-direction: column; justify-content: space-between;">
+    <h3 style="color:#003366;">Local Weather</h3>
+    <p>Paste your favorite weather link below. It’ll stay fixed so you can open it every day with one click.</p>
+    <input type="text" id="weatherLink" placeholder="Paste your favorite weather link here" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
+    <div id="weatherDrawer" style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
+    <button onclick="openWeather()" style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open Weather</button>
 
-<!-- 🌤️ Local Weather Block -->
-<div id="weather" class="section local-weather-block" style="background-color: #f4f1ec; padding: 1.5em; border-radius: 8px; border: 1px solid #ccc;">
-  <h3 style="color:#003366;">Local Weather</h3>
-  <p>Paste your favorite weather link below. It’ll stay fixed so you can open it every day with one click.</p>
-  <input type="text" id="weatherLink" placeholder="Paste your favorite weather link here" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
-  <div id="weatherDrawer" style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
-  <button onclick="openWeather()" style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open Weather</button>
-
-  <div style="margin-top: 1.5em;">
-    <h4 style="color:#003366;">Need Directions or Flight Info?</h4>
-    <p>Click below to launch your preferred traffic or flight tracker:</p>
-    <div class="snippet" style="font-weight: bold;">
-      <a href="https://www.google.com/maps" class="weather-maps" target="_blank" style="color: #0645AD; text-decoration: underline;">Google Maps</a>&nbsp;&nbsp;
-      <a href="https://www.waze.com" class="weather-waze" target="_blank" style="color: #0645AD; text-decoration: underline;">Waze</a>&nbsp;&nbsp;
-      <a href="https://www.flightaware.com" class="weather-flightaware" target="_blank" style="color: #0645AD; text-decoration: underline;">FlightAware</a>
+    <div style="margin-top: 1.5em;">
+      <h4 style="color:#003366;">Need Directions or Flight Info?</h4>
+      <p>Click below to launch your preferred traffic or flight tracker:</p>
+      <div class="snippet" style="font-weight: bold;">
+        <a href="https://www.google.com/maps" class="weather-maps" target="_blank" style="color: #0645AD; text-decoration: underline;">Google Maps</a>&nbsp;&nbsp;
+        <a href="https://www.waze.com" class="weather-waze" target="_blank" style="color: #0645AD; text-decoration: underline;">Waze</a>&nbsp;&nbsp;
+        <a href="https://www.flightaware.com" class="weather-flightaware" target="_blank" style="color: #0645AD; text-decoration: underline;">FlightAware</a>
+      </div>
     </div>
   </div>
-</div>
-
-
-
 
   <!-- 🗞️ Local & State News Block -->
-<div class="local-state-news-block" style="background-color: #f4f1ec; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 1.75em; border-radius: 10px; border: 1px solid #ccc;">
-<h3 style="color:#003366;">Local & State News</h3>
-
-
+  <div class="local-state-news-block" style="flex: 1; background-color: #f4f1ec; padding: 1.75em; border-radius: 10px; border: 1px solid #ccc; display: flex; flex-direction: column; justify-content: space-between;">
+    <h3 style="color:#003366;">Local & State News</h3>
     <p>Paste your favorite local and state news links below. They’ll stay fixed so you can open them every day with one click.</p>
-
-    <!-- Local News Input -->
     <label for="localNews" style="font-weight: bold;">Local News Link:</label>
     <input type="text" id="localNews" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
-    <div id="localDrawer" style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
-    <button onclick="openLocalNews()" style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open Local News</button>
+    <div id="localDrawer" style="display: none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
 
-    <!-- State News Input -->
-    <label for="stateNews" style="font-weight: bold; margin-top: 1em; display: block;">State News Link:</label>
-    <input type="text" id="stateNews" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
-    <div id="stateDrawer" style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
-    <button onclick="openStateNews()" style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open State News</button>
+    <div style="margin-top: 1.5em;">
+      <h4 style="color:#003366;">What you say matters and is welcome</h4>
+      <p><a href="#comment" style="color: #0645AD; text-decoration: underline;">Please Leave a Comment</a></p>
+    </div>
   </div>
-
 </section>
-<!-- 🔧 Comment Invitation Block Start -->
-<div class="section" style="background-color: #f4f1ec; padding: 1.5em; border-radius: 8px; font-family: Georgia, serif; display: flex; align-items: flex-start; gap: 2em; margin-top: 2em; max-width: 640px; margin-left: auto; margin-right: auto;">
-  <!-- Logo on Left Margin -->
-  <div style="flex: 0 0 auto;">
-    <img src="new_logo.png" alt="Digging For Clarity Logo" style="height: 96px; object-fit: contain;">
-  </div>
 
-  <!-- Left-Aligned Text Block -->
-  <div style="flex: 1;">
-    <p style="font-size: 1.1em; font-weight: bold; color: #003366; margin: 0;">
-What you say matters and is welcome    </p>
-    <button onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSd4mYAENWhXzujGgvhFDF_LWXi_Du_Y1ITqgv_A4_AWSOHUxQ/viewform?usp=dialog', '_blank')" style="margin-top: 1em; padding: 0.6em 1.2em; background-color: #003366; color: #ffffff; font-family: Georgia, serif; font-size: 1em; border-radius: 4px; border: none; cursor: pointer;">
-      Please Leave a Comment
-    </button>
-  </div>
-</div>
-<!-- 🔧 Comment Invitation Block End -->
 
 
 <!-- 🗽 U.S. News Block -->
