@@ -1,3 +1,4 @@
+
 .footer-container {
   display: flex;
   margin: 0 auto;
@@ -972,4 +973,3 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
-
