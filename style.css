@@ -973,6 +973,15 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
-#weather, .local-state-news-block {
-  min-height: 220px;
+.local-pair-wrap {
+  display: flex;
+  align-items: stretch;
 }
+
+#weather, .local-state-news-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
