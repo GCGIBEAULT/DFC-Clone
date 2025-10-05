@@ -16,8 +16,7 @@
 4. Weather Grid
 5. Forecast Icons
 =================== -->
-<title>DFC Sandbox</title>
-
+<title>Digging For Clarity</title>
 <link rel="icon" href="footer_logo.png" type="image/png">
 <link rel="apple-touch-icon" href="footer_logo.png">
 
@@ -27,7 +26,7 @@
 <meta name="author" content="Gregg Gibeault">
 
 <!-- Open Graph (Facebook, LinkedIn, etc.) -->
-<meta property="og:title" content="DFC Sandbox">
+<meta property="og:title" content="Digging For Clarity">
 <meta property="og:description" content="Just The News Please. Hold The Drama.">
 <meta property="og:image" content="https://gcgibeault.github.io/DiggingForClarity/new_logo.png">
 <meta property="og:url" content="https://gcgibeault.github.io/DiggingForClarity/">
@@ -96,8 +95,9 @@ function toggleReflection(event) {
 
 <!-- 🧭 Editorial Masthead Start -->
 <div class="editorial-box" style="text-align: center; margin-top: 48px;">
-  <h1 style="...">DFC Sandbox</h1>
-
+  <h1 style="font-family: Georgia, serif; font-size: 2.8em; color: #003366; margin-bottom: 0.6em;">
+    Digging For Clarity
+  </h1>
   <h2 style="font-size: 1.2em; font-weight: 600; color: #003366; margin-top: 0.2em; margin-bottom: 0.6em;">
     In Memory of Children – And the Leaves of Fall
   </h2>
@@ -119,7 +119,7 @@ function toggleReflection(event) {
     Quick Jump
   </p>
   <p style="font-size: 1em; color: #003366; line-height: 1.6; margin: 0;">
-<a href="#weather" style="color: #003366; text-decoration: none;">Local Weather</a> |
+   <a href="#weather" style="color: #003366; text-decoration: none;">Local Weather</a> |
     <a href="#ai" style="color: #003366; text-decoration: none;">AI</a> |
     <a href="#sports" style="color: #003366; text-decoration: none;">Sports</a> |
     <a href="#nfl" style="color: #003366; text-decoration: none;">NFL</a> |
@@ -185,9 +185,10 @@ function toggleReflection(event) {
 
 
 <!-- 🧭 Local Weather + Local & State News Side-by-Side -->
-<section class="local-pair-wrap" style="display: flex; gap: 1.5em; max-width: 960px; margin: 2em auto;">
+<section class="local-pair-wrap" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; margin-top: 2em; max-width: 960px; margin-left: auto; margin-right: auto;">
+
   <!-- 🌤️ Local Weather Block -->
-  <div id="weather" class="section local-weather-block" style="flex: 1; background-color: #f4f1ec; padding: 1.5em; border-radius: 8px; border: 1px solid #ccc; display: flex; flex-direction: column; justify-content: space-between;">
+  <div id="weather" class="section local-weather-block" style="background-color: #f4f1ec; padding: 1.5em; border-radius: 8px; border: 1px solid #ccc;">
     <h3 style="color:#003366;">Local Weather</h3>
     <p>Paste your favorite weather link below. It’ll stay fixed so you can open it every day with one click.</p>
     <input type="text" id="weatherLink" placeholder="Paste your favorite weather link here" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
@@ -198,27 +199,38 @@ function toggleReflection(event) {
       <h4 style="color:#003366;">Need Directions or Flight Info?</h4>
       <p>Click below to launch your preferred traffic or flight tracker:</p>
       <div class="snippet" style="font-weight: bold;">
-        <a href="https://www.google.com/maps" class="weather-maps" target="_blank" style="color: #0645AD; text-decoration: underline;">Google Maps</a>&nbsp;&nbsp;
-        <a href="https://www.waze.com" class="weather-waze" target="_blank" style="color: #0645AD; text-decoration: underline;">Waze</a>&nbsp;&nbsp;
-        <a href="https://www.flightaware.com" class="weather-flightaware" target="_blank" style="color: #0645AD; text-decoration: underline;">FlightAware</a>
+<a href="https://www.google.com/maps" class="weather-maps" target="_blank" rel="noopener noreferrer" data-goal="weather-maps" style="color: #0645AD; text-decoration: underline;">Google Maps</a>
+<a href="https://www.waze.com" class="weather-waze" target="_blank" rel="noopener noreferrer" data-goal="weather-waze" style="color: #0645AD; text-decoration: underline;">Waze</a>
+<a href="https://www.flightaware.com" class="weather-flightaware" target="_blank" rel="noopener noreferrer" data-goal="weather-flightaware" style="color: #0645AD; text-decoration: underline;">FlightAware</a>
+
       </div>
     </div>
   </div>
 
+
   <!-- 🗞️ Local & State News Block -->
-  <div class="local-state-news-block" style="flex: 1; background-color: #f4f1ec; padding: 1.75em; border-radius: 10px; border: 1px solid #ccc; display: flex; flex-direction: column; justify-content: space-between;">
-    <h3 style="color:#003366;">Local & State News</h3>
+<div class="local-state-news-block" style="background-color: #f4f1ec; box-shadow: 0 2px 6px rgba(0,0,0,0.1); padding: 1.75em; border-radius: 10px; border: 1px solid #ccc;">
+<h3 style="color:#003366;">Local & State News</h3>
+
+
     <p>Paste your favorite local and state news links below. They’ll stay fixed so you can open them every day with one click.</p>
+
+    <!-- Local News Input -->
     <label for="localNews" style="font-weight: bold;">Local News Link:</label>
     <input type="text" id="localNews" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
-    <div id="localDrawer" style="display: none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
+    <div id="localDrawer" style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
+    <button onclick="openLocalNews()" style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open Local News</button>
 
-    <div style="margin-top: 1.5em;">
-      <h4 style="color:#003366;">What you say matters and is welcome</h4>
-      <p><a href="#comment" style="color: #0645AD; text-decoration: underline;">Please Leave a Comment</a></p>
-    </div>
+    <!-- State News Input -->
+    <label for="stateNews" style="font-weight: bold; margin-top: 1em; display: block;">State News Link:</label>
+    <input type="text" id="stateNews" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
+    <div id="stateDrawer" style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
+    <button onclick="openStateNews()" style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open State News</button>
   </div>
+
 </section>
+
+
 <!-- 🔧 Comment Invitation Block Start -->
 <div class="section" style="background-color: #f4f1ec; padding: 1.5em; border-radius: 8px; font-family: Georgia, serif; display: flex; align-items: flex-start; gap: 2em; margin-top: 2em; max-width: 640px; margin-left: auto; margin-right: auto;">
   <!-- Logo on Left Margin -->
@@ -246,41 +258,33 @@ What you say matters and is welcome    </p>
   border-radius: 8px;
   box-sizing: border-box;
 ">
-<h3 id="us-news" style="color:#003366;" title="Updated October 3, 2025 at 7:48 AM MDT">U.S. News</h3>
+<h3 id="us-news" style="color:#003366;" title="Updated Saturday, October 4, 2025 at 8:23 PM MDT">U.S. News</h3>
+
 
   <ul style="list-style-type: disc; padding-left: 1.5em; line-height: 1.6; margin: 0;">
 
 <li>
-  <a href="https://www.cnn.com/2025/10/02/us/abrego-garcia-asylum-denied-immigration-hnk" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Asylum Denied for Kilmar Abrego Garcia</strong>
-  </a> Judge rejects bid to reopen 2019 case. Garcia has 30 days to appeal but risks deportation to El Salvador, where he alleges torture.
-</li>
-
-<li>
-  <a href="https://www.cnn.com/2025/10/02/us/arizona-amazon-drones-crash" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Amazon Drones Crash into Crane in Arizona</strong>
-  </a> Two Prime Air MK30 drones struck a crane in Tolleson, causing fire and debris. FAA and NTSB investigations underway; deliveries resume Friday.
+  <a href="https://www.aljazeera.com/news/2025/10/4/border-patrol-agents-shoot-woman-amid-chicago-immigration-protests" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Border Patrol Agents Shoot Woman During Chicago Protest</strong>
+  </a>
+  A U.S. citizen was shot by Border Patrol agents amid clashes with ICE in Chicago’s Little Village. DHS says she rammed federal vehicles before being wounded. She drove herself to the hospital; her condition is unknown.
 </li>
 
 
 <li>
-  <a href="https://www.reuters.com/legal/government/sean-diddy-combs-be-sentenced-prostitution-related-charges-freak-offs-2025-10-03/" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Diddy Sentenced to 4+ Years Over Prostitution Conviction</strong>
-  </a> Judge rebukes Combs for “subjugation” of ex-girlfriends. He apologized in court; children urged leniency. Appeal expected.
-</li>
-
-<li>
-  <a href="https://www.reuters.com/legal/government/us-judge-rules-against-texas-book-ban-school-libraries-2025-10-04/" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Federal Judge Blocks Texas Book Ban in School Libraries</strong>
-  </a> Ruling says removal of 17 titles—including Holocaust memoirs and LGBTQ+ stories—violates First Amendment. Books must be returned within 14 days.
+  <a href="https://www.cnn.com/2025/10/04/politics/fbi-agent-fired-comey" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>FBI Agent Fired After Refusing to Arrest Comey</strong>
+  </a>
+  An FBI agent was disciplined for refusing to participate in the planned surrender of former Director James Comey, who faces charges of obstruction and false statements. The agent cited concerns over media spectacle and chain-of-command violations.
 </li>
 
 
 
 <li>
-  <a href="https://www.nbcnews.com/news/us-news/mystery-signal-california-desert-2025-10-04" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Mystery Signal Detected in California Desert</strong>
-  </a> Scientists at Caltech picked up a repeating radio burst near Edwards Air Force Base. No known satellite matches the pattern. Pentagon confirms it's not military.
+  <a href="https://www.cnn.com/2025/10/04/business/rite-aid-closes-stores" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Rite Aid Closes All Remaining Stores After 63 Years</strong>
+  </a>
+  Rite Aid shut down its final 89 stores this week, ending a 63-year run. The chain filed for bankruptcy twice in two years, citing $4B in legal debt and competition from CVS and Walgreens. Customers can still request records online.
 </li>
    <li>
   <a href="https://www.msn.com/en-us/money/companies/excavators-find-1-million-in-gold-coins-from-spanish-shipwreck-along-floridas-treasure-coast/ar-AA1NKQoC" target="_blank" style="color:#003366; text-decoration: none;">
@@ -288,11 +292,13 @@ What you say matters and is welcome    </p>
   </a> More than 1,000 silver and gold coins from the 1715 Spanish fleet were found by Queens Jewels LLC divers. Minted in Bolivia, Mexico, and Peru, the coins offer rare historical insight. Florida law allows the state to retain 20% for public display.
 </li>
 
+<li>
+  <a href="https://www.cnn.com/2025/10/04/business/chevron-refinery-fire-el-segundo" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Chevron Refinery Fire Triggers Air Alert in El Segundo</strong>
+  </a>
+  A fire erupted at Chevron’s El Segundo facility near LAX, prompting emergency crews to deploy air quality monitors. No injuries reported, but residents were advised to shelter indoors due to chemical exposure risks.
+</li>
 
-      <a href="https://www.timeanddate.com/countdown/christmas" target="_blank" style="color:#003366; text-decoration: none;">
-        🎄 <strong>Countdown to Christmas</strong>
-      </a> Find out exactly how many days, hours, and minutes remain until December 25. Updated live every second.
-    </li>
   </ul>
 </div>
 
@@ -304,40 +310,44 @@ What you say matters and is welcome    </p>
   <h3 id="global" style="color:#003366;" title="Updated Friday, October 4, 2025 at 7:14 PM MDT">Global News</h3>
 
   <ul style="list-style-type: disc; padding-left: 1.5em; line-height: 1.6; margin: 0;">
-    <li>
-      <a href="https://www.aljazeera.com/news/2025/10/04/philippines-earthquake-death-toll-rises" target="_blank" style="color:#003366; text-decoration: none;">
-        <strong>Philippines Earthquake Death Toll Rises to 72</strong>
-      </a> A 6.9 magnitude quake struck Cebu. Hospitals are overwhelmed and over 20,000 people remain displaced. UN pledges emergency support.
-    </li>
-
-    <li>
-      <a href="https://www.cbc.ca/news/canada/edmonton/indigenous-teen-disappearance-criminal-2025-10-04" target="_blank" style="color:#003366; text-decoration: none;">
-        <strong>Indigenous Teen’s Disappearance Now Deemed Criminal</strong>
-      </a> Edmonton police reclassify the case of 15-year-old Talia Cardinal as a criminal investigation. Family says she vanished after leaving a youth shelter last week.
-    </li>
-
-    <li>
-      <a href="https://mexiconewsdaily.com/news/firefly-species-discovered-mexico-city-2025-10-04/" target="_blank" style="color:#003366; text-decoration: none;">
-        <strong>New Firefly Species Discovered in Mexico City</strong>
-      </a> Scientists confirm a previously undocumented species in Chapultepec Park. Locals invited to help name it. Mexico ranks second globally in firefly diversity.
-    </li>
-
-    <li>
-      <a href="https://www.independent.co.uk/news/world/europe/ukraine-russia-war-trump-gas-facilities-kharkiv-b2838480.html" target="_blank" style="color:#003366; text-decoration: none;">
-        <strong>Russia Launches Largest Strike Yet on Ukrainian Gas Facilities</strong>
-      </a> 35 missiles and 60 drones hit infrastructure in Kharkiv and Poltava. Naftogaz calls it “critical damage.” UN warns of escalating civilian danger.
-    </li>
-
-    <li>
-      <a href="https://www.jpost.com/israel-news/2025-10-04/idf-strikes-gaza-city-al-shati-refugee-camp" target="_blank" style="color:#003366; text-decoration: none;">
-        <strong>Israel Air Force Strikes Al-Shati Refugee Camp in Gaza City</strong>
-      </a> IDF confirms overnight bombardment targeting Hamas infrastructure. Medical sources report dozens killed. UN warns of escalating civilian danger.
-    </li>
-   <li>
-  <a href="https://www.aljazeera.com/news/2025/10/4/iran-executes-six-fighters-accused-of-ties-to-israel-state-media" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Iran Executes Six Fighters Accused of Ties to Israel</strong>
-  </a> State media reports the men were convicted of armed attacks and bombings in Khuzestan province. A separate execution targeted a Kurdish fighter accused of killing a Muslim leader. Human rights groups warn of escalating repression.
+<li>
+  <a href="https://www.aljazeera.com/news/2025/10/4/greta-thunberg-mistreated-by-israeli-forces-in-detention-activists-say" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Greta Thunberg Allegedly Mistreated by Israeli Forces</strong>
+  </a>
+  Activists deported after a Gaza aid flotilla claim Greta Thunberg was dragged, humiliated, and forced to kiss the Israeli flag during detention. Israel denies all allegations, calling them “complete lies”.
 </li>
+
+
+<li>
+  <a href="https://www.cnn.com/2025/10/04/asia/japan-first-female-prime-minister-keiko-tanaka" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Japan Picks First Female Prime Minister Amid Party Crisis</strong>
+  </a>
+  Keiko Tanaka was elected leader of Japan’s ruling party, becoming the nation’s first female Prime Minister. The move follows defections and collapsing support for the LDP, triggering a major political realignment.
+</li>
+
+
+<li>
+  <a href="https://www.aljazeera.com/news/2025/10/4/israel-pounds-gaza-killing-61-despite-trumps-call-for-it-to-halt-bombing" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Israel Pounds Gaza, Killing 61 Despite Trump’s Ceasefire Push</strong>
+  </a>
+  Israeli strikes killed at least 61 Palestinians Saturday, including children in Gaza City and al-Mawasi. Trump urged Hamas to finalize his 20-point peace plan, but bombardments continued. Hospitals report fuel shortages and mass casualties.
+</li>
+
+
+
+<li>
+  <a href="https://www.ksat.com/news/2025/10/04/dozens-injured-in-savage-russian-drone-strike-on-ukrainian-railway-station/" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Russian Drone Strike Hits Ukrainian Rail Station, Injures 30</strong>
+  </a>
+  A double-tap drone strike on Shostka’s rail station killed one and injured at least 30, including children. The second drone hit during evacuation. Zelensky called it “a vile attack,” and EU leaders condemned Russia’s targeting of civilians.
+</li>
+<li>
+  <a href="https://www.bbc.com/news/world-europe-67012345" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Storm Amy Kills Two in France, Triggers National Weather Alert</strong>
+  </a>
+  Gusts reached 130 km/h across Brittany and Normandy, toppling trees and power lines. Two fatalities confirmed. Rail service suspended in five regions. Emergency shelters opened. France braces for continued flooding and infrastructure strain.
+</li>
+
 
   </ul>
 </div>
@@ -351,9 +361,10 @@ What you say matters and is welcome    </p>
 
    
 <li>
-  <a href="https://www.usatoday.com/story/news/politics/2025/10/03/government-shutdown-trump-mass-firings-live-updates/86456455007/" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Shutdown Day 4—Congress Fails to End Stalemate</strong>
-  </a> Senate votes fall short. Lawmakers leave town without a deal, sending the shutdown into the weekend. 750,000 federal workers remain furloughed.
+  <a href="https://www.politico.com/news/2025/10/04/house-gop-shutdown-strategy-00594262" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Speaker Johnson Cancels House Votes, Pauses GOP Leadership Return</strong>
+  </a>
+  Johnson told House Republicans they’ll get 48-hour notice if needed, but no votes are scheduled until Oct. 14. GOP leaders say the House “did its job” by passing a stopgap bill. Democrats call it “irresponsible vacationing” as military pay nears cutoff.
 </li>
 
 <li>
@@ -363,7 +374,7 @@ What you say matters and is welcome    </p>
 
   </ul>
   <div style="text-align: center; font-size: 2em; font-weight: bold; color: #990000; margin-top: 1em;">
-    CLOSED – DAY FOUR
+    CLOSED – DAY FIVE
   </div>
 </div>
 
@@ -381,26 +392,36 @@ What you say matters and is welcome    </p>
 
   <ul style="list-style-type: disc; padding-left: 1.5em; line-height: 1.6;">
 <li>
-  <a href="https://www.usatoday.com/story/news/politics/2025/10/03/government-shutdown-trump-defense-department-renamed/86456455007/" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Trump Renames Defense Department to “Department of War”</strong>
-  </a> Executive order signed Thursday renames the Pentagon’s top agency. USA TODAY confirms internal memos already reflect the change. Critics warn of diplomatic fallout; allies call it “truth in branding.”
-</li>
-<li>
-  <a href="https://www.msn.com/en-us/news/us/hegseth-fires-navy-chief-of-staff/ar-AA1NPEYR?ocid=hpmsn&cvid=68e13e0c7cca410db82fbd700ea38782&ei=16" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Hegseth Fires Navy Chief of Staff Jon Harrison</strong>
-  </a> The Department of War confirmed Harrison’s removal Friday, citing sudden leadership changes. He had worked with Navy Secretary John Phelan to implement sweeping policy reforms. Politico sources say the firing was abrupt and internally disruptive.
+  <a href="https://www.usatoday.com/story/news/politics/2025/10/04/judge-blocks-trump-national-guard-portland-oregon/86528742007/" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Judge Blocks Trump’s National Guard Deployment to Portland</strong>
+  </a>
+  A federal judge issued a temporary restraining order halting President Trump’s plan to send 200 Oregon National Guard troops to Portland. The ruling follows Oregon’s claim that the city’s protests were minimal and did not warrant military force.
 </li>
 
+<li>
+  <a href="https://www.usatoday.com/story/news/politics/2025/10/04/bondi-doj-appeal-sentence-kavanaugh-would-be-assassin/86526904007/" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>DOJ to Appeal Sentence for Kavanaugh’s Would-Be Assassin</strong>
+  </a>
+  Attorney General Pam Bondi called the 8-year sentence for Sophie Roske “woefully insufficient.” Roske flew cross-country with weapons intending to kill Justice Brett Kavanaugh. DOJ had sought 30 years to life.
+</li>
 
 <li>
-  <a href="https://www.aljazeera.com/news/2025/10/3/what-are-trumps-new-rules-for-universities-to-qualify-for-federal-funding" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Trump Memo Demands Ideological Compliance for University Funding</strong>
-  </a> The White House sent a 10-point memo to nine universities requiring cuts to foreign enrollment, abolition of departments that “belittle” conservative ideas, and tuition freezes to qualify for federal funds.
+  <a href="https://www.eenews.net/articles/fema-halts-grant-program-that-spent-billions-on-disaster-protection/" target="_blank" style="color:#003366; text-decoration: none;">
+    <strong>FEMA Cancels $750M Disaster Grant Program Amid Shutdown</strong>
+  </a>
+  Acting Administrator Cameron Hamilton confirmed FEMA will halt all Building Resilient Infrastructure and Communities (BRIC) grants, including previously approved wildfire and flood mitigation projects. The agency called BRIC “wasteful,” while emergency managers warned the move will devastate local recovery efforts.
 </li>
 <li>
-  <a href="https://www.foxnews.com/politics/ernst-demands-2t-federal-cuts-urges-trump-team-make-dc-squeal-amid-shutdown-fight" target="_blank" style="color:#003366; text-decoration: none;">
-    <strong>Sen. Ernst Proposes $2 Trillion in Federal Cuts Amid Shutdown</strong>
-  </a> In a letter to OMB Director Russ Vought, Sen. Joni Ernst outlined a plan to slash over $2 trillion in federal spending, targeting unused COVID-19 funds, office space, and blue-state programs.
+  <a href="https://govfacts.org/roundup/federal-government-shutdown-and-major-executive-actions-week-of-october-4-2025/" target="_blank" style="color:#003366; text-decoration: none;">
+    <strong>HHS Launches Enforcement Blitz Against Healthcare Data Hoarding</strong>
+  </a>
+  On October 4, HHS Secretary Robert F. Kennedy Jr. ordered immediate enforcement against hospitals and tech firms accused of “information blocking”—the practice of restricting patient access to their own electronic health records. Violators face civil penalties up to $1 million per incident. The crackdown targets Epic Systems, Cerner, and several regional hospital networks.
+</li>
+<li>
+  <a href="https://hip-hopvibe.com/news/tsa-lines-shutdown-laguardia-airport/" target="_blank" style="color:#003366; text-decoration: none;">
+    <strong>TSA Lines Grind to a Halt at LaGuardia Amid Shutdown Chaos</strong>
+  </a>
+  On October 4, TSA screenings at LaGuardia Airport collapsed as agents refused overtime and removed name tags in silent protest. Port Authority confirmed 20% staffing shortfalls, forcing PreCheck lane closures and leaving travelers stranded in mile-long queues. No announcements were made. Podiums stood empty. The shutdown’s impact was visible, immediate, and editorially undeniable.
 </li>
 
 
@@ -560,15 +581,48 @@ What you say matters and is welcome    </p>
 
 
     <ul style="list-style-type: disc; padding-left: 1.5em; line-height: 1.6; margin: 0;">
-<li><a href="https://www.aljazeera.com/sports/2025/10/3/pro-palestine-protestors-target-italy-training-for-israel-world-cup-tie" target="_blank" style="color:#003366; text-decoration:none;"><strong>Italy Training Targeted by Protesters Ahead of Israel Match</strong></a> Demonstrators gathered outside Italy’s football training center demanding cancellation of the October 14 World Cup qualifier against Israel. The protest followed Israel’s interdiction of an aid flotilla and coincided with a nationwide strike. UEFA is reportedly considering suspending Israel from competition.</li>
+<li>
+  <a href="https://www.foxnews.com/sports/hegseth-sets-world-record-navy-football-game-most-people-doing-pushups-same-time" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Hegseth Sets World Pushup Record at Navy Game</strong>
+  </a>
+  Fox News host Pete Hegseth led 3,068 fans in synchronized pushups at the Navy–North Texas football game, breaking the Guinness World Record for most people doing pushups simultaneously.
+</li>
 
 
-<li><a href="https://www.aljazeera.com/sports/2025/10/2/coco-gauff-defeats-eva-lys-to-reach-china-open-semifinal" target="_blank" style="color:#003366; text-decoration:none;"><strong>Coco Gauff Defeats Eva Lys to Reach China Open Semifinal</strong></a> Gauff overcame a spirited challenge from 66th-ranked Eva Lys, winning 6–3, 6–4 in Beijing. The defending champion is bidding to become the first woman to win back-to-back titles at the WTA 1000 event. She next faces either Amanda Anisimova or Jasmine Paolini.</li>
 
-<li><a href="https://sports.com/en/golf/news/432409" target="_blank" style="color:#003366; text-decoration:none;"><strong>Fitzpatrick Slams PGA Chief Over Ryder Cup Crowd Comparison</strong></a> Matt Fitzpatrick called comments by PGA of America president Don Rea “offensive” after Rea equated the hostile New York crowd with European fans in Rome. Fitzpatrick said the European team felt bitterness during the trophy handoff and received apologies from American friends. Tyrrell Hatton added that future Ryder Cups should be respectful, not hostile.</li>
+<li>
+  <a href="https://www.usatoday.com/story/sports/nfl/2025/10/04/mark-sanchez-stabbed-indianapolis-hospitalized-fox/86522860007/" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Mark Sanchez Hospitalized After Stabbing in Indianapolis</strong>
+  </a>
+  Former NFL quarterback and Fox analyst Mark Sanchez was stabbed early Saturday and arrested for his alleged role in the incident. Police say it was an isolated altercation between two men. Sanchez remains hospitalized in stable condition.
+</li>
 
 
-    </ul>
+<li>
+  <a href="https://www.usatoday.com/story/sports/mlb/playoffs/2025/10/04/yankees-vs-blue-jays-score-channel-mlb-playoffs-highlights/86522886007/" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Yankees and Blue Jays Clash in ALDS Game 1</strong>
+  </a>
+  Toronto hosted the Yankees in Game 1 of the ALDS after clinching the AL East. Luis Gil faced off against Kevin Gausman in a tightly matched opener. Game aired on Fox; first pitch was 4:08 PM ET.
+</li>
+<li>
+  <a href="https://www.usatoday.com/story/sports/mlb/playoffs/2025/10/04/dodgers-vs-phillies-score-live-tv-channel-nlds-game-1/86524190007/" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Dodgers Stun Phillies in NLDS Game 1 Thriller</strong>
+  </a>
+  Shohei Ohtani made his postseason pitching debut as the Dodgers edged the Phillies in a dramatic Game 1. Citizens Bank Park was electric, but L.A. held on late. Game aired on TBS; next pitch Monday at 6:08 PM ET.
+</li>
+<li>
+  <a href="https://www.usatoday.com/story/sports/mlb/playoffs/2025/10/04/tigers-vs-mariners-score-channel-mlb-playoffs-highlights/86524200007/" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Tigers Silence Mariners in ALDS Game 1 Nail-Biter</strong>
+  </a>
+  Kerry Carpenter’s solo homer and Zach McKinstry’s 11th-inning RBI lifted Detroit past Seattle 3–2. T-Mobile Park was stunned as the Tigers stole the opener. Game aired on FS1; next pitch Monday at 9:08 PM ET.
+</li>
+<li>
+  <a href="https://www.usatoday.com/story/sports/mlb/brewers/2025/10/04/brewers-next-game-playoff-schedule-vs-cubs/86529513007/" target="_blank" style="color:#003366; text-decoration:none;">
+    <strong>Brewers Blast Cubs in NLDS Game 1 Opener</strong>
+  </a>
+  Milwaukee erupted for six runs in the first inning and cruised to a 9–3 win over Chicago. Freddy Peralta struck out nine, and American Family Field roared. Game aired on TBS; next pitch Monday at 8:08 PM ET.
+</li>
+
 
     <div style="height: 2em;"></div>
 
@@ -674,41 +728,46 @@ What you say matters and is welcome    </p>
 
 <!-- ==== NFL Standings — Timestamped and Modular ==== -->
 <section class="section" style="margin-top: 2em; background-color: #f4f1ec; padding: 1.25em; border-radius: 8px;">
-  <h3 id="nfl" style="color:#003366;" title="Updated Friday, October 3, 2025 at 6:47 PM MDT">
+  <h3 id="nfl" style="color:#003366;" title="Updated Saturday, October 4, 2025 at 1:27 PM MDT">
     <a href="https://diggingforclarity.com/#nfl" target="_blank" style="color:#003366; text-decoration: none;">
       NFL Standings
     </a>
   </h3>
+
   <div style="display: flex; justify-content: space-between; flex-wrap: wrap; font-family: Georgia, serif; font-size: 1em; color: #222;">
+
     <!-- Column 1 -->
     <div style="flex: 0 0 48%;">
       <div style="margin-bottom: 1.5em;">
         <strong>AFC East</strong><br>
-        Buffalo Bills 3–1<br>
-        New England Patriots 2–2<br>
-        Miami Dolphins 1–3<br>
-        New York Jets 0–4
+        <span style="display: inline-block; width: 240px;">Buffalo Bills</span><span style="display: inline-block; width: 96px;">4–0</span><br>
+        <span style="display: inline-block; width: 240px;">New England Patriots</span><span style="display: inline-block; width: 96px;">2–2</span><br>
+        <span style="display: inline-block; width: 240px;">Miami Dolphins</span><span style="display: inline-block; width: 96px;">1–3</span><br>
+        <span style="display: inline-block; width: 240px;">New York Jets</span><span style="display: inline-block; width: 96px;">0–4</span>
       </div>
+
       <div style="margin-bottom: 1.5em;">
         <strong>AFC North</strong><br>
-        Pittsburgh Steelers 3–1<br>
-        Cincinnati Bengals 2–2<br>
-        Baltimore Ravens 1–3<br>
-        Cleveland Browns 1–3
+        <span style="display: inline-block; width: 240px;">Pittsburgh Steelers</span><span style="display: inline-block; width: 96px;">3–1</span><br>
+        <span style="display: inline-block; width: 240px;">Cincinnati Bengals</span><span style="display: inline-block; width: 96px;">2–2</span><br>
+        <span style="display: inline-block; width: 240px;">Baltimore Ravens</span><span style="display: inline-block; width: 96px;">1–3</span><br>
+        <span style="display: inline-block; width: 240px;">Cleveland Browns</span><span style="display: inline-block; width: 96px;">1–3</span>
       </div>
+
       <div style="margin-bottom: 1.5em;">
         <strong>AFC South</strong><br>
-        Indianapolis Colts 3–1<br>
-        Jacksonville Jaguars 3–1<br>
-        Houston Texans 1–3<br>
-        Tennessee Titans 0–4
+        <span style="display: inline-block; width: 240px;">Indianapolis Colts</span><span style="display: inline-block; width: 96px;">3–1</span><br>
+        <span style="display: inline-block; width: 240px;">Jacksonville Jaguars</span><span style="display: inline-block; width: 96px;">3–1</span><br>
+        <span style="display: inline-block; width: 240px;">Houston Texans</span><span style="display: inline-block; width: 96px;">1–3</span><br>
+        <span style="display: inline-block; width: 240px;">Tennessee Titans</span><span style="display: inline-block; width: 96px;">0–4</span>
       </div>
-      <div>
+
+      <div style="margin-bottom: 1.5em;">
         <strong>AFC West</strong><br>
-        Los Angeles Chargers 3–1<br>
-        Kansas City Chiefs 2–2<br>
-        Denver Broncos 2–2<br>
-        Las Vegas Raiders 1–3
+        <span style="display: inline-block; width: 240px;">Los Angeles Chargers</span><span style="display: inline-block; width: 96px;">3–1</span><br>
+        <span style="display: inline-block; width: 240px;">Kansas City Chiefs</span><span style="display: inline-block; width: 96px;">2–2</span><br>
+        <span style="display: inline-block; width: 240px;">Denver Broncos</span><span style="display: inline-block; width: 96px;">1–3</span><br>
+        <span style="display: inline-block; width: 240px;">Las Vegas Raiders</span><span style="display: inline-block; width: 96px;">1–3</span>
       </div>
     </div>
 
@@ -716,124 +775,118 @@ What you say matters and is welcome    </p>
     <div style="flex: 0 0 48%;">
       <div style="margin-bottom: 1.5em;">
         <strong>NFC East</strong><br>
-        Philadelphia Eagles 4–0<br>
-        Washington Commanders 2–2<br>
-        Dallas Cowboys 1–2–1<br>
-        New York Giants 1–3
+        <span style="display: inline-block; width: 240px;">Philadelphia Eagles</span><span style="display: inline-block; width: 96px;">4–0</span><br>
+        <span style="display: inline-block; width: 240px;">Dallas Cowboys</span><span style="display: inline-block; width: 96px;">2-1–1</span><br>
+        <span style="display: inline-block; width: 240px;">Washington Commanders</span><span style="display: inline-block; width: 96px;">2–2</span><br>
+        <span style="display: inline-block; width: 240px;">New York Giants</span><span style="display: inline-block; width: 96px;">1–3</span>
       </div>
+
       <div style="margin-bottom: 1.5em;">
         <strong>NFC North</strong><br>
-        Detroit Lions 3–1<br>
-        Green Bay Packers 2–1–1<br>
-        Minnesota Vikings 2–2<br>
-        Chicago Bears 2–2
+        <span style="display: inline-block; width: 240px;">Detroit Lions</span><span style="display: inline-block; width: 96px;">3–1</span><br>
+        <span style="display: inline-block; width: 240px;">Green Bay Packers</span><span style="display: inline-block; width: 96px;">2–1-1</span><br>
+        <span style="display: inline-block; width: 240px;">Minnesota Vikings</span><span style="display: inline-block; width: 96px;">2–2</span><br>
+        <span style="display: inline-block; width: 240px;">Chicago Bears</span><span style="display: inline-block; width: 96px;">2–2</span>
       </div>
+
       <div style="margin-bottom: 1.5em;">
         <strong>NFC South</strong><br>
-        Tampa Bay Buccaneers 3–1<br>
-        Atlanta Falcons 2–2<br>
-        Carolina Panthers 1–3<br>
-        New Orleans Saints 0–4
+        <span style="display: inline-block; width: 240px;">Tampa Bay Buccaneers</span><span style="display: inline-block; width: 96px;">3–1</span><br>
+        <span style="display: inline-block; width: 240px;">Atlanta Falcons</span><span style="display: inline-block; width: 96px;">2–2</span><br>
+        <span style="display: inline-block; width: 240px;">New Orleans Saints</span><span style="display: inline-block; width: 96px;">1–3</span><br>
+        <span style="display: inline-block; width: 240px;">Carolina Panthers</span><span style="display: inline-block; width: 96px;">0–4</span>
       </div>
-      <div>
+
+      <div style="margin-bottom: 1.5em;">
         <strong>NFC West</strong><br>
-        San Francisco 49ers 3–1<br>
-        Seattle Seahawks 3–1<br>
-        Los Angeles Rams 3–1<br>
-        Arizona Cardinals 2–2
+        <span style="display: inline-block; width: 240px;">San Francisco 49ers</span><span style="display: inline-block; width: 96px;">4–1</span><br>
+        <span style="display: inline-block; width: 240px;">Seattle Seahawks</span><span style="display: inline-block; width: 96px;">3–1</span><br>
+        <span style="display: inline-block; width: 240px;">Los Angeles Rams</span><span style="display: inline-block; width: 96px;">3–2</span><br>
+        <span style="display: inline-block; width: 240px;">Arizona Cardinals</span><span style="display: inline-block; width: 96px;">1–3</span>
       </div>
     </div>
   </div>
 </section>
 
 
+
+
 <!-- ==== Game Day — Week 5: National TV Broadcasts ==== -->
-<div class="section" style="margin-top: 2em;">
-  <h3 id="gameday" style="color:#003366; text-align: center;" title="Updated Wednesday, October 1, 2025 at 9:13 PM MDT">
-    <a href="https://diggingforclarity.com/#gameday" target="_blank" style="color:#003366; text-decoration: none;">Coverage varies by region. Check local listings.</a>
+<div class="section" id="gameday" style="margin-top: 2em; background-color: #f4f1ec; padding: 1.5em; border-radius: 10px; border: 1px solid #ccc;">
+  <h3 style="color:#003366; font-size: 1.5em; font-weight: bold;">
+    Game Day
   </h3>
+  <p style="text-align: center; font-size: 0.95em; color: #003366;">
+    Coverage varies by region. Check local listings.
+  </p>
 
-  <div style="margin-top: 20px;">
-    <table style="margin: 0 auto; font-family: Georgia, serif; font-size: 1em; border-collapse: collapse;">
+  <br><br>
 
-      <tr>
-        <td style="padding: 4px 24px; text-align: left;">Vikings vs Browns</td>
-        <td style="padding: 4px 24px; text-align: center;">Sunday</td>
-        <td style="padding: 4px 24px; text-align: center;">9:30 AM ET</td>
-        <td style="padding: 4px 24px; text-align: right;">NFL Network Only</td>
-      </tr>
-      <tr><td colspan="4" style="text-align: center; padding: 12px 0;"><strong>Sunday Afternoon</strong></td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Texans vs Ravens</td><td style="padding: 4px 24px; text-align: center;">1:00 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">CBS</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Giants vs Saints</td><td style="padding: 4px 24px; text-align: center;">1:00 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">CBS</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Broncos vs Eagles</td><td style="padding: 4px 24px; text-align: center;">1:00 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">CBS</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Cowboys vs Jets</td><td style="padding: 4px 24px; text-align: center;">1:00 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">FOX</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Raiders vs Colts</td><td style="padding: 4px 24px; text-align: center;">1:00 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">FOX</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Dolphins vs Panthers</td><td style="padding: 4px 24px; text-align: center;">1:00 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">FOX</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Titans vs Cardinals</td><td style="padding: 4px 24px; text-align: center;">4:05 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">CBS</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Buccaneers vs Seahawks</td><td style="padding: 4px 24px; text-align: center;">4:05 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">CBS</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Lions vs Bengals</td><td style="padding: 4px 24px; text-align: center;">4:25 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">FOX</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Commanders vs Chargers</td><td style="padding: 4px 24px; text-align: center;">4:25 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">FOX</td></tr>
-      <tr><td style="padding: 4px 24px; text-align: left;">Patriots vs Bills</td><td style="padding: 4px 24px; text-align: center;">8:20 PM ET</td><td></td><td style="padding: 4px 24px; text-align: right;">NBC</td></tr>
-    </table>
-
-<p style="text-align: center;">Chiefs vs Jaguars — 8:15 PM ET — ABC and ESPN</p>
-
-  </div>
+  <ul style="list-style-type: disc; padding-left: 1.5em; line-height: 1.6;">
+    <li>Vikings vs Browns — Sunday 9:30 AM ET — NFL Network Only</li>
+    <li>Texans vs Ravens — 1:00 PM ET — CBS</li>
+    <li>Giants vs Saints — 1:00 PM ET — CBS</li>
+    <li>Broncos vs Eagles — 1:00 PM ET — CBS</li>
+    <li>Cowboys vs Jets — 1:00 PM ET — FOX</li>
+    <li>Raiders vs Colts — 1:00 PM ET — FOX</li>
+    <li>Dolphins vs Panthers — 1:00 PM ET — FOX</li>
+    <li>Titans vs Cardinals — 4:05 PM ET — CBS</li>
+    <li>Buccaneers vs Seahawks — 4:05 PM ET — CBS</li>
+    <li>Lions vs Bengals — 4:25 PM ET — FOX</li>
+    <li>Commanders vs Chargers — 4:25 PM ET — FOX</li>
+    <li>Patriots vs Bills — 8:20 PM ET — NBC</li>
+    <li>Chiefs vs Jaguars — 8:15 PM ET — ABC and ESPN</li>
+  </ul>
 </div>
 
 
-<!-- ⚾ MLB National League Division Series -->
+
+
+
+<!-- ⚾ National League Division Series (NLDS) -->
 <section class="section mlb-nlds" style="margin-top: 2em; background-color: #f4f1ec; padding: 1.5em; border-radius: 10px; border: 1px solid #ccc;">
   <h3 style="color:#003366;">National League Division Series (NLDS)</h3>
 
-  <!-- Dodgers vs Phillies -->
   <div style="margin-top: 1em;">
     <h4 style="color:#003366;">Dodgers vs. Phillies</h4>
     <ul style="list-style-type: disc; padding-left: 1.25em;">
-      <li>Game 1: Sat, Oct 4 – 6:38 PM ET</li>
       <li>Game 2: Mon, Oct 6 – 6:08 PM ET</li>
       <li>Game 3: Wed, Oct 8 – 9:08 PM ET</li>
       <li>Game 4 (if needed): Thu, Oct 9 – 6:08 or 7:08 PM ET</li>
       <li>Game 5 (if needed): Sat, Oct 11 – 8:08 PM ET</li>
     </ul>
+    <p style="margin-top: 0.5em; font-weight: bold; color: #003366;">Dodgers lead best-of-five series 1–0.</p>
   </div>
 
-  <!-- Cubs vs Brewers -->
   <div style="margin-top: 1.5em;">
     <h4 style="color:#003366;">Cubs vs. Brewers</h4>
     <ul style="list-style-type: disc; padding-left: 1.25em;">
-      <li>Game 1: Sat, Oct 4 – 2:08 PM ET</li>
       <li>Game 2: Mon, Oct 6 – 9:08 PM ET</li>
       <li>Game 3: Wed, Oct 8 – 5:08 PM ET</li>
       <li>Game 4 (if needed): Thu, Oct 9 – 7:08 or 9:08 PM ET</li>
       <li>Game 5 (if needed): Sat, Oct 11 – 4:38 PM or 8:08 PM ET</li>
     </ul>
+    <p style="margin-top: 0.5em; font-weight: bold; color: #003366;">Brewers lead best-of-five series 1–0.</p>
   </div>
 
   <p style="margin-top: 1.5em; font-style: italic; color: #990000;">Check your local listings for Game Times.</p>
 </section>
 
-
-
-
-
-<!-- ⚾ MLB American League Division Series -->
+<!-- ⚾ American League Division Series (ALDS) -->
 <section class="section mlb-alds" style="margin-top: 2em; background-color: #f4f1ec; padding: 1.5em; border-radius: 10px; border: 1px solid #ccc;">
   <h3 style="color:#003366;">American League Division Series (ALDS)</h3>
 
-  <!-- Blue Jays vs Yankees -->
   <div style="margin-top: 1em;">
     <h4 style="color:#003366;">Blue Jays vs. Yankees</h4>
     <ul style="list-style-type: disc; padding-left: 1.25em;">
-      <li>Game 1: Sat, Oct 4 – 4:08 PM ET</li>
       <li>Game 2: Sun, Oct 5 – 4:08 PM ET</li>
       <li>Game 3: Tue, Oct 7 – 8:08 PM ET</li>
       <li>Game 4 (if needed): Wed, Oct 8 – 7:08 PM ET</li>
       <li>Game 5 (if needed): Fri, Oct 10 – 8:08 PM ET</li>
     </ul>
+    <p style="margin-top: 0.5em; font-weight: bold; color: #003366;">Blue Jays lead best-of-five series 1–0.</p>
   </div>
 
-  <!-- Mariners vs Tigers -->
   <div style="margin-top: 1.5em;">
     <h4 style="color:#003366;">Mariners vs. Tigers</h4>
     <ul style="list-style-type: disc; padding-left: 1.25em;">
@@ -843,10 +896,12 @@ What you say matters and is welcome    </p>
       <li>Game 4 (if needed): Wed, Oct 8 – 3:08 or 7:08 PM ET</li>
       <li>Game 5 (if needed): Fri, Oct 10 – 4:08 or 8:08 PM ET</li>
     </ul>
+       <p style="margin-top: 0.5em; font-weight: bold; color: #003366;">Tigers lead best-of-five series 1–0.</p>
   </div>
 
   <p style="margin-top: 1.5em; font-style: italic; color: #990000;">Check your local listings for Game Times.</p>
 </section>
+
 
 
 
@@ -867,9 +922,10 @@ What you say matters and is welcome    </p>
 
 <!-- 📊 Left: Market Index Data -->
 <div style="flex: 1;">
-  <h3 id="market" style="color:#003366;" title="Updated Friday, October 3, 2025 at 5:05 PM MT">
-    <a href="https://www.staradvertiser.com/2025/10/03/breaking-news/dow-s-nasdaq-falls/" target="_blank" style="color:#003366; text-decoration: none;">Market Watch</a>
-  </h3>
+<h3 id="market" style="color:#003366;" title="Updated Friday, October 3, 2025 at 4:00 PM ET">
+  Market Watch – Closing Bell Oct 3, 2025 4:00 PM ET
+</h3>
+
 
   <p style="color:#003366;">Dow Jones: 46,758.28 <span style="color: green;">+238.56 pts (+0.51%) <strong>Up</strong></span></p>
   <p style="margin-left: 2em; font-size: 0.95em; color: #003366;">52-week range: 36,611.78 – 47,049.64</p>
@@ -924,17 +980,17 @@ What you say matters and is welcome    </p>
 </script>
 
 <section class="section" style="margin-top: 2em; background-color: #f4f1ec; padding: 1.5em; border-radius: 8px;">
-  <h3 id="history" style="color:#003366;" title="Updated Saturday, October 4, 2025 at 8:59 AM MT">
-    On This Day in History – Oct 4
+  <h3 id="history" style="color:#003366;" title="Updated Sunday, October 5, 2025 at 12:24 AM MT">
+    On This Day in History – Oct 5
   </h3>
 
   <ul style="padding-left: 1.5em; font-family: Georgia, serif; font-size: 1em; line-height: 1.6;">
-    <li><strong>1957:</strong> The Soviet Union launches Sputnik 1, the first artificial satellite, igniting the space race.</li>
-    <li><strong>1970:</strong> Janis Joplin dies at age 27 in Los Angeles, becoming part of the “27 Club” of iconic musicians.</li>
-    <li><strong>1993:</strong> Russian President Boris Yeltsin orders tanks to shell the parliament building during a constitutional crisis.</li>
-    <li><strong>1988:</strong> U.S. televangelist Jim Bakker is convicted of fraud and conspiracy, marking a fall from grace.</li>
-    <li><strong>2006:</strong> WikiLeaks is launched, aiming to publish classified and sensitive documents from anonymous sources.</li>
-    <li><strong>1976:</strong> The U.S. Supreme Court reinstates the death penalty after a four-year national moratorium.</li>
+    <li><strong>1813:</strong> Shawnee leader Tecumseh is defeated and killed at the Battle of the Thames in Ontario, ending a major Native resistance alliance.</li>
+    <li><strong>1877:</strong> Chief Joseph of the Nez Perce surrenders to U.S. forces in Montana, declaring, “I will fight no more forever.”</li>
+    <li><strong>1892:</strong> The Dalton Gang is wiped out during a failed double bank robbery in Coffeyville, Kansas.</li>
+    <li><strong>1969:</strong> “Monty Python’s Flying Circus” premieres on BBC, redefining absurdist comedy and counterculture satire.</li>
+    <li><strong>2001:</strong> Barry Bonds breaks the MLB single-season home run record, hitting his 71st and 72nd homers for a season total of 73.</li>
+    <li><strong>2011:</strong> Apple co-founder Steve Jobs dies at age 56, leaving behind a legacy of design, disruption, and digital transformation.</li>
   </ul>
 
   <p style="font-size: 0.9em; color: #666;">Curated for clarity. Updated daily. No spin—just time-stamped truth.</p>
@@ -942,42 +998,52 @@ What you say matters and is welcome    </p>
 
 
 
+
 <!-- 🧾 Debt Ceiling Editorial — Full Width, Stacked Below -->
 <section class="section" style="margin-top: 2em; background-color: #f4f1ec; padding: 1.5em; border-radius: 8px;">
-<h3 id="debtceiling" style="color:#003366;" title="Updated Tuesday, September 30, 2025 at 12:00 PM ET">
-  <a href="https://diggingforclarity.com/#debtceiling" target="_blank" style="color:#003366; text-decoration: none;">
-    The Debt Ceiling
-  </a>
-</h3>
+  <h3 id="debt-ceiling" style="color:#003366;" title="Updated Saturday, October 4, 2025 at 2:03 PM MDT">
+    <a href="https://diggingforclarity.com/#governance" target="_blank" style="color:#003366; text-decoration: none;">
+      Debt Ceiling
+    </a>
+  </h3>
 
-  <p style="line-height: 1.6; color: #444;">
-    You may notice a theme in the stories I choose. I stay neutral on the politics of the day—with one exception: the budget. Not mine. Not yours. But really, both ours.
+  <p style="font-family: Georgia, serif; font-size: 1em; color: #222;">
+    Senators are elected by the states they represent. Their job is to defend federal law and operate the country under budget constraints. That’s not optional. That’s the job. Just like any household, they’re supposed to spend what they have—not what they wish they had.
   </p>
-  <p style="line-height: 1.6; color: #444;">
-    The Federal Budget is the culprit. It’s the one Congress controls to fund the way of life we’ve all grown accustomed to. The one they use to pay our debt. The one they tap to send federal aid to nearly every state—because most couldn’t survive without it.
+
+  <p style="font-family: Georgia, serif; font-size: 1em; color: #222;">
+    But today, the Senate has authorized over <strong>$40 trillion</strong> in expenditures—money that doesn’t exist. They cut a dollar here and a dollar there, but those cuts are symbolic. In the latest budget talks, the only thing growing is the debt: another <strong>$2 trillion</strong> in spending they can’t pay for.
   </p>
-  <p style="line-height: 1.6; color: #444;">
-    Pick a state. Any state. Our tax dollars fund programs those states simply can’t afford on their own. In 2025, 20% of all federal revenue—the money Washington collects from taxes—goes out to aid all 50 states. I’ve done the math. That’s nearly $1 trillion a year.
-  </p>
-  <p style="line-height: 1.6; color: #444;">
-    But here’s the illusion: most of that money is borrowed. The federal government doesn’t have it. It borrows it. And every time Congress raises the debt ceiling, it’s giving itself permission to borrow even more. That’s what the debt ceiling is. It’s not a budget. It’s a borrowing limit.
-  </p>
-  <p style="line-height: 1.6; color: #444;">
-    So when you hear that Congress is debating the debt ceiling, what they’re really debating is whether to keep borrowing money they don’t have to fund programs we all rely on. And if they don’t raise it? The government shuts down. Federal workers don’t get paid. Social Security checks stop. Military bases freeze. And the economy tanks.
-  </p>
-  <p style="line-height: 1.6; color: #444;">
-    That’s the illusion. The American Dream isn’t funded by taxes. It’s funded by debt. And the ceiling keeps rising.
+
+  <p style="font-family: Georgia, serif; font-size: 1em; color: #222;">
+    This is the Senate’s budget betrayal. They were hired to protect the states. To defend the Constitution. To pass budgets that reflect reality. Instead, they’ve become the last line of defense for a fantasy economy—one funded by borrowed money and political theater. If there was ever a moment for every single member of the Senate to resign, it’s now. They’re not doing the job. They’re doing the opposite.
   </p>
 </section>
 
 
 
+
+
 <!-- 🔊 Make Noise: Enforcement Collapse -->
-<section class="section" style="margin-top: 2em; background-color: #f4f1ec; padding: 1.5em; border-radius: 8px; font-family: Georgia, serif;">
-  <h3 id="make-noise" style="color:#003366; text-align: left;">Make Noise</h3>
-  <p style="color:#000000; font-size: 1.05em;">
-    I put <a href="https://diggingforclarity.com" target="_blank" style="color:#003366; text-decoration: none;">diggingforclarity.com</a> in a text to everyone in my phone for a beta test on the site. Net result: I don’t have enough numbers in my phone—and I heard from three old friends. That’s a win I’ll take. A couple thought it was spam. Didn’t think of that.<br><br>
-    This block, Make Noise, is here for you—for stuff like that. Got something to say? Say it. Right now you have a 90 percent chance of it appearing on the site. Maybe higher. My hope is those odds don’t last, so get it while it’s hot.
+<section class="section" style="margin-top: 2em; background-color: #f4f1ec; padding: 1.5em; border-radius: 8px;">
+  <h3 id="make-noise" style="color:#003366;" title="Updated Saturday, October 4, 2025 at 2:27 PM MDT">
+    <a href="https://diggingforclarity.com/#make-noise" target="_blank" style="color:#003366; text-decoration: none;">
+      Make Noise
+    </a>
+  </h3>
+
+  <p style="font-family: Georgia, serif; font-size: 1em; color: #222;">
+    If you’ve got something to say—say it. Right here. Right now. This is your space to speak up, call out contradictions, and demand clarity. Whether it’s budget betrayal, shutdown injustice, or something local that’s been ignored, your voice belongs in this block.
+  </p>
+
+  <p style="font-family: Georgia, serif; font-size: 1em; color: #222;">
+    <strong>Make some noise.</strong> Do it right here. Your comment won’t be buried. It won’t be filtered. It’ll be seen. And if it’s consequence-aware, it’ll be heard.
+  </p>
+
+  <p style="font-family: Georgia, serif; font-size: 1em; color: #222;">
+    <a href="https://docs.google.com/forms/d/1K1RNVIED1G_PNe8t0kAvHCrio_6hIlBky3sz8hJHZBo/viewform" target="_blank" style="color:#003366; text-decoration: underline;">
+      Leave a Comment
+    </a>
   </p>
 </section>
 
@@ -1004,6 +1070,9 @@ What you say matters and is welcome    </p>
   <label for="favorite3" style="display: block; margin-top: 1em;">Favorite 3:</label>
   <input type="text" id="favorite3" style="width: 100%; margin-bottom: 0.5em;">
   <button onclick="openFavorite('favorite3')" style="margin-bottom: 1em;">View Favorite</button>
+
+
+
 
   <!-- Vision Quote and Email -->
   <div style="background-color: #f4f1ec; padding: 1.5em; border-left: 4px solid #003366; margin-top: 2em;">
@@ -1633,6 +1702,66 @@ function openFinanceLink() {
   window.open(url, "_blank");
 }
 </script>
+<script>
+(function(){
+  // Queue events until plausible is ready
+  var plausibleQueue = [];
+  function sendQueued(){
+    if (typeof plausible !== 'function') return false;
+    while(plausibleQueue.length){
+      var ev = plausibleQueue.shift();
+      try { plausible(ev); } catch(e) { /* swallow */ }
+    }
+    return true;
+  }
+
+  // Safe send: use plausible if available, otherwise queue
+  function safePlausible(goalName){
+    if (typeof plausible === 'function') {
+      try { plausible(goalName); } catch(e) { plausibleQueue.push(goalName); }
+    } else {
+      plausibleQueue.push(goalName);
+    }
+  }
+
+  // Bind all [data-goal] anchors (idempotent)
+  function bindGoals(){
+    document.querySelectorAll('[data-goal]').forEach(function(link){
+      if (link.__plausibleBound) return;
+      link.addEventListener('click', function(e){
+        // Fire immediately for analytics; allow default navigation
+        var goal = link.getAttribute('data-goal');
+        if (goal) safePlausible(goal);
+      }, {passive: true});
+      link.__plausibleBound = true;
+    });
+  }
+
+  // Try to flush queue when plausible becomes available
+  var checkInterval = setInterval(function(){
+    bindGoals();
+    if (sendQueued()){
+      clearInterval(checkInterval);
+    }
+  }, 800);
+
+  // Bind on DOM ready immediately
+  if (document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', bindGoals);
+  } else {
+    bindGoals();
+  }
+
+  // Final attempt when page fully loaded
+  window.addEventListener('load', function(){
+    bindGoals();
+    sendQueued();
+  });
+
+  // Expose for debugging in console
+  window.__plausibleQueue = plausibleQueue;
+})();
+</script>
 
 
 <!-- Leave these as-is -->
@@ -1640,6 +1769,96 @@ function openFinanceLink() {
 <script src="/js/editor.js" defer></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
