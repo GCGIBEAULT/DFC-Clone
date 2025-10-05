@@ -973,3 +973,6 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
+#weather, .local-state-news-block {
+  min-height: 220px;
+}
