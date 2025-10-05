@@ -1749,9 +1749,21 @@ function openFinanceLink() {
   window.__plausibleQueue = plausibleQueue;
 })();
 </script>
-<footer style="text-align: center; font-family: Georgia, serif; font-size: 0.9em; color: #444; margin-top: 3em; padding-bottom: 2em;">
+<footer id="dfc-footer" style="text-align:center;font-family:Georgia,serif;font-size:0.95em;color:#444;margin-top:3rem;padding:2rem 1rem;display:block;clear:both;width:100%;">
   © 2025 Digging For Clarity. All rights reserved. Editorially sealed, consequence-aware, and built with love.
 </footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var f = document.getElementById('dfc-footer');
+    if (!f) return;
+    document.body.appendChild(f);
+    f.style.display = 'block';
+    f.style.clear = 'both';
+    f.style.width = '100%';
+    f.style.textAlign = 'center';
+  });
+</script>
 
 
  <!-- Leave these as-is -->
