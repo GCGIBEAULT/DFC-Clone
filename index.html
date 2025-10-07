@@ -116,7 +116,7 @@
       const pay = state.paychecks[state.active];
       const id = Date.now();
       pay.lines.push({
-        id,
+        id: id,
         name: 'New item',
         amount: 0,
         type: 'offline',
