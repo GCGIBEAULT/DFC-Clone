@@ -1134,3 +1134,25 @@ select:focus {
   outline: none;
   background-color: #eef6ff;
 }
+.line input[type="text"],
+.line input[type="number"],
+.line input[type="date"],
+.line select {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 4px 6px;
+  font-size: 14px;
+  cursor: text;
+}
+
+.line input:focus,
+.line select:focus {
+  border-color: #0077cc;
+  background-color: #eef6ff;
+  outline: none;
+}
+
+.line input:hover,
+.line select:hover {
+  background-color: #f9f9f9;
+}
