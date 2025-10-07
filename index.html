@@ -172,9 +172,14 @@ function render() {
       <div style="flex:1">
         <input value="${escape(line.name)}" data-id="${line.id}" class="name">
       </div>
-      <div style="width:110px;text-align:right">
-        <input type="number" value="${line.amount}" data-id="${line.id}" class="amt">
-      </div>
+<div style="width:110px;text-align:right">
+  <input type="number"
+         value="${line.amount ? line.amount : ''}"
+         placeholder="Payment"
+         data-id="${line.id}"
+         class="amt">
+</div>
+
       <div style="width:90px">
         <select class="type" data-id="${line.id}">
           <option value="auto"${line.type==='auto'?' selected':''}>Auto</option>
