@@ -973,15 +973,139 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
-.local-pair-wrap {
-  display: flex;
-  align-items: stretch;
+#weather, #ai, #sports, #nfl, #mlb, #congress, #exec, #governance, #veterans, #global, #market, #make-noise, #favorites, #history {
+  scroll-margin-top: 80px;
+}
+.block-container {
+  font-family: Georgia, serif;
+  font-size: 0.95em;
+  background-color: #f4f1ec;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+  color: #003366;
 }
 
-#weather, .local-state-news-block {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+button {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 16px;
+  max-width: 200px;
+  white-space: nowrap;
+}
+.blink {
+  animation: blink-animation 0.3s ease-in-out;
 }
 
+@keyframes blink-animation {
+  0%   { background-color: #003366; }
+  50%  { background-color: #0055aa; }
+  100% { background-color: #003366; }
+}
+/* Shared button base */
+button.dfc-open {
+  cursor: pointer;
+  transition: background-color 160ms ease, transform 120ms ease, box-shadow 220ms ease;
+  border: none;
+  color: #fff;
+  background-color: #003366;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+}
+
+/* Hover state — subtle lift and color shift */
+button.dfc-open:hover {
+  background-color: #0055aa;
+  transform: translateY(-1px);
+  animation: dfc-hover-blink 0.45s ease-in-out 1;
+}
+
+/* Focus state for keyboard users */
+button.dfc-open:focus {
+  outline: 3px solid rgba(0,85,170,0.18);
+  outline-offset: 2px;
+}
+
+/* Short blink/pulse keyframes */
+@keyframes dfc-hover-blink {
+  0%   { box-shadow: 0 0 0 0 rgba(0,85,170,0); }
+  30%  { box-shadow: 0 6px 18px -6px rgba(0,85,170,0.18); }
+  100% { box-shadow: 0 0 0 0 rgba(0,85,170,0); }
+}
+/* DFC comment CTA pulse — no hard background so it inherits shared dfc-open styles */
+button.dfc-pulse, a.dfc-pulse {
+  cursor: pointer;
+  display: inline-block;
+  transition: transform 120ms ease, box-shadow 220ms ease, background-color 160ms;
+  color: #fff;
+  padding: 0.5em 0.9em;
+  border-radius: 6px;
+  border: none;
+  text-decoration: none;
+  background-color: transparent; /* let dfc-open set the color */
+}
+
+/* when dfc-pulse is used together with dfc-open the base color comes from dfc-open */
+button.dfc-pulse.dfc-open, a.dfc-pulse.dfc-open {
+  background-color: #003366;
+}
+
+/* hover/pulse only; color change uses dfc-open hover if present */
+button.dfc-pulse:hover, a.dfc-pulse:hover {
+  transform: translateY(-2px);
+  animation: dfc-comment-pulse 0.5s ease-in-out 1;
+}
+
+/* focus for keyboard users */
+button.dfc-pulse:focus, a.dfc-pulse:focus {
+  outline: 3px solid rgba(163,0,0,0.18);
+  outline-offset: 2px;
+}
+
+@keyframes dfc-comment-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(163,0,0,0); }
+  35%  { box-shadow: 0 10px 30px -14px rgba(163,0,0,0.24); }
+  100% { box-shadow: 0 0 0 0 rgba(163,0,0,0); }
+}
+:root{
+  --bg:#f6f7f9;
+  --card:#ffffff;
+  --accent:#003366;
+  --muted:#6b7280;
+  --max-width:960px;
+  --radius:10px;
+  --shadow:0 4px 14px rgba(7,12,20,0.06);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing:border-box}
+
+html,body{height:100%;margin:0;background:var(--bg);color:#0b1220;-webkit-font-smoothing:antialiased}
+
+.container{max-width:var(--max-width);margin:0 auto;padding:20px}
+
+/* Masthead */
+.masthead{text-align:center;margin-top:28px}
+.masthead h1{font-family: Georgia, serif; color:var(--accent); font-size:2.4rem;margin:0}
+.masthead p{color:var(--muted);margin:6px 0 18px}
+
+/* Cards and grid */
+.grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:900px){.grid{grid-template-columns:1fr 420px}}
+.card{background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.small{font-size:0.95rem;color:var(--muted)}
+
+/* Buttons */
+.btn{background:var(--accent);color:#fff;padding:8px 12px;border:0;border-radius:8px;cursor:pointer}
+.btn:active{transform:translateY(1px)}
+
+/* Budget area */
+.paytabs{display:flex;gap:8px;margin-bottom:8px}
+.tab{flex:1;padding:10px;border-radius:8px;text-align:center;background:#eef6ff;color:var(--accent);font-weight:700;cursor:pointer}
+.tab.active{background:var(--accent);color:#fff}
+.line{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:#fbfdff;margin-top:8px}
+.line input[type="text"], .line input[type="number"], input[type="text"]{border:0;background:transparent;outline:none;font-size:15px;padding:6px}
+
+/* Footer */
+footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
