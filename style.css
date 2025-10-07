@@ -1212,6 +1212,12 @@ input.amt::placeholder {
   display: inline-block;
 }
 
+.amount-wrapper {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+
 .amount-wrapper::before {
   content: '$';
   position: absolute;
@@ -1219,12 +1225,17 @@ input.amt::placeholder {
   top: 50%;
   transform: translateY(-50%);
   font-weight: 700;
+  font-size: 15px;
   color: #333;
   pointer-events: none;
 }
 
 .amount-wrapper input.amt {
   padding-left: 18px;
+  font-size: 15px;
+  height: 28px;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 
