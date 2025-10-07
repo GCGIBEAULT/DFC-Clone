@@ -19,9 +19,9 @@ t
 GCGIBEAULT
 GCGIBEAULT
 Update index.html
-efa26a3
+53d2f1f
  · 
-31 minutes ago
+43 minutes ago
 
 Code
 
@@ -204,15 +204,12 @@ function render() {
         <input value="${escape(line.name)}" data-id="${line.id}" class="name">
       </div>
 <div style="width:110px;text-align:right">
-  <div class="amount-wrapper">
-    <input type="number"
-           value="${line.amount ? line.amount : ''}"
-           placeholder="Payment"
-           data-id="${line.id}"
-           class="amt">
-  </div>
+  <input type="number"
+         value="${line.amount ? line.amount : ''}"
+         placeholder="Payment"
+         data-id="${line.id}"
+         class="amt">
 </div>
-
 
       <div style="width:90px">
         <select class="type" data-id="${line.id}">
@@ -363,4 +360,4 @@ function addLine() {
 </script>
 </body>
 </html>
-DFC-Clone/index.html at main · GCGIBEAULT/DFC-Clone
+DFC-Clone/index.html at 04265857d068d4867636429e637d9e675d56eb04 · GCGIBEAULT/DFC-Clone 
