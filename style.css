@@ -1207,5 +1207,24 @@ input.amt::placeholder {
 .amount-wrapper input.amt {
   padding-left: 18px; /* creates space for the $ */
 }
+.amount-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.amount-wrapper::before {
+  content: '$';
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 700;
+  color: #333;
+  pointer-events: none;
+}
+
+.amount-wrapper input.amt {
+  padding-left: 18px;
+}
 
 
