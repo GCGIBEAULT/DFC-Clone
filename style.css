@@ -1105,7 +1105,6 @@ html,body{height:100%;margin:0;background:var(--bg);color:#0b1220;-webkit-font-s
 .tab{flex:1;padding:10px;border-radius:8px;text-align:center;background:#eef6ff;color:var(--accent);font-weight:700;cursor:pointer}
 .tab.active{background:var(--accent);color:#fff}
 .line{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:#fbfdff;margin-top:8px}
-.line input[type="text"], .line input[type="number"], input[type="text"]{border:0;background:transparent;outline:none;font-size:15px;padding:6px}
 
 /* Footer */
 footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
