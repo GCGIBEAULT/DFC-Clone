@@ -31,8 +31,6 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Georgia,serif;backgroun
     <p class="small">Private workspace • Local-first testing</p>
   </header>
 
-  <!-- small two-column head blocks omitted for brevity; keep existing markup if desired -->
-
   <main style="margin-top:18px" role="main">
     <div class="card" id="primaryCard">
       <h2 style="margin:0 0 8px;color:var(--accent)">IOIOIO</h2>
@@ -78,7 +76,7 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Georgia,serif;backgroun
 </div>
 
 <script>
-/* Minimal, self-contained state + render implementation so addLine works */
+/* Keep logic minimal and consistent with the previous implementation */
 const KEY = 'dfc:blank:ioioio:v1';
 const defaults = {
   active: '1',
@@ -102,13 +100,11 @@ function saveState(){
   try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
 }
 
-/* Utilities */
 function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function switchPay(payId){
   state.active = payId;
   saveState();
-  // update tabs UI
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.getAttribute('data-pay')===payId));
   render();
 }
@@ -116,11 +112,9 @@ function switchPay(payId){
 function render(){
   const pay = state.paychecks[state.active];
   document.getElementById('incomeVal').value = pay.income;
-  // Expenses
   const total = pay.lines.reduce((s,l)=> s + (Number(l.amount)||0), 0);
   document.getElementById('expensesVal').textContent = `$${total}`;
 
-  // Lines
   const container = document.getElementById('lines');
   container.innerHTML = '';
   pay.lines.forEach(line => {
@@ -133,7 +127,6 @@ function render(){
     `;
     container.appendChild(div);
 
-    // wiring to keep model in sync
     const nameInput = div.querySelector('.name');
     const amtInput = div.querySelector('.amt');
     nameInput.addEventListener('input', (e)=> { const id=e.target.dataset.id; const L = findLine(id); if(L){ L.name = e.target.value; saveState(); }});
@@ -153,7 +146,7 @@ function removeLine(id){
   render();
 }
 
-/* Exposed addLine used by the button */
+/* addLine is defined here inside the single main script block */
 function addLine() {
   const pay = state.paychecks[state.active];
   const id = 'n' + Date.now().toString(36);
@@ -170,7 +163,7 @@ function addLine() {
   render();
 }
 
-/* Local news helper from your snippet */
+/* local helpers kept minimal: openLocalNews example preserved if needed elsewhere */
 function openLocalNews(){
   const el = document.getElementById('localNews');
   const url = el && el.value && el.value.trim();
@@ -184,7 +177,6 @@ document.addEventListener('DOMContentLoaded',() => {
   if(saved) {
     try { state = Object.assign(JSON.parse(JSON.stringify(defaults)), JSON.parse(saved)); } catch(e){}
   }
-  // wire income click to quick edit
   const income = document.getElementById('incomeVal');
   if(income){
     income.addEventListener('change', () => {
