@@ -310,7 +310,7 @@ function addLine() {
   const id = 'n' + Date.now().toString(36);
   state.paychecks[state.active].lines.push({
     id: id,
-    name: '',           // IMPORTANT: empty so placeholder shows
+    name: '',           // empty so placeholder appears
     amount: 0,
     type: 'offline',
     vendor_url: '',
