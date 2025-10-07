@@ -177,12 +177,15 @@ function render() {
         <input value="${escape(line.name)}" data-id="${line.id}" class="name">
       </div>
 <div style="width:110px;text-align:right">
-  <input type="number"
-         value="${line.amount ? line.amount : ''}"
-         placeholder="Payment"
-         data-id="${line.id}"
-         class="amt">
+  <div class="amount-wrapper">
+    <input type="number"
+           value="${line.amount ? line.amount : ''}"
+           placeholder="Payment"
+           data-id="${line.id}"
+           class="amt">
+  </div>
 </div>
+
 
       <div style="width:90px">
         <select class="type" data-id="${line.id}">
@@ -333,4 +336,3 @@ function addLine() {
 </script>
 </body>
 </html>
-DFC-Clone/index.html at 04265857d068d4867636429e637d9e675d56eb04 · GCGIBEAULT/DFC-Clone 
