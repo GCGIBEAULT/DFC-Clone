@@ -97,25 +97,6 @@ footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
         <!-- Row 2: lines container -->
         <div id="lines" style="margin-top:12px;display:flex;flex-direction:column;gap:8px;"></div>
 
-<script>
-/* paste this inside the existing script block */
-function addLine() {
-  const pay = state.paychecks[state.active];
-  const id = 'n' + Date.now().toString(36);
-  const newLine = {
-    id: id,
-    name: '',     // IMPORTANT: empty so the placeholder appears
-    amount: 0,
-    type: 'offline',
-    pay_date: '',
-    comment: '',
-    vendor_url: ''
-  };
-  pay.lines.push(newLine);
-  saveState();
-  render();
-}
-</script>
 
       <footer>
         <div class="small">Private workspace • Local-first testing • Your backup is safe</div>
