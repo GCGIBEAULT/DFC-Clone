@@ -208,32 +208,7 @@ function addLine(){
   saveState();
   render();
 }
-document.addEventListener('DOMContentLoaded', () => {
-const container = document.querySelector('#lines');
-const existingNames = [...container.querySelectorAll('.name')].map(input => input.value);
-const canonicalBills = [
-  { id: 'p1', name: 'Groceries', amount: 200, type: 'offline', vendor_url: '' },
-  { id: 'p2', name: 'Subscriptions', amount: 40, type: 'auto', vendor_url: '' },
-  { id: 'p3', name: 'Savings', amount: 100, type: 'auto', vendor_url: '' }
-];
 
-canonicalBills.forEach(line => {
-  if (!existingNames.includes(line.name)) {
-    const el = document.createElement('div');
-    el.className = 'line';
-    el.innerHTML = `
-      <div style="flex:1"><input value="${line.name}" data-id="${line.id}" class="name"></div>
-      <div style="width:110px;text-align:right"><input type="number" value="${line.amount}" data-id="${line.id}" class="amt"></div>
-      <div style="width:90px"><select class="type" data-id="${line.id}">
-        <option value="auto" ${line.type === 'auto' ? 'selected' : ''}>Auto</option>
-        <option value="offline" ${line.type === 'offline' ? 'selected' : ''}>Offline</option>
-      </select></div>
-      <div style="width:36px;text-align:center"><button class="url" data-id="${line.id}">${line.vendor_url ? '🔗' : '+'}</button></div>
-      <div style="width:36px;text-align:center"><button class="rem" data-id="${line.id}">✕</button></div>
-    `;
-    container.appendChild(el);
-  }
-});
 
  
 </script>
