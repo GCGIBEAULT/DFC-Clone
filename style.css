@@ -1156,3 +1156,14 @@ select:focus {
 .line select:hover {
   background-color: #f9f9f9;
 }
+.line {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 8px;
+  margin-bottom: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fefefe;
+  box-shadow: 0 0 0 1px #eee;
+}
