@@ -287,6 +287,7 @@ document.addEventListener('DOMContentLoaded',() => {
   render();
 });
 
+<script>
 function addLine() {
   const id = 'n' + Date.now().toString(36);
   state.paychecks[state.active].lines.push({
@@ -301,6 +302,8 @@ function addLine() {
   saveState();
   render();
 }
+</script>
+
 
 
 </script>
