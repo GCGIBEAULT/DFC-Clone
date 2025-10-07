@@ -158,7 +158,7 @@ function render() {
     const el = document.createElement('div');
     el.className = 'line';
 
-    // Name field
+    // Name
     let nameEl;
     if (line.name === 'Place Bill') {
       nameEl = document.createElement('div');
@@ -240,7 +240,7 @@ function render() {
     };
     el.appendChild(comment);
 
-    // Vendor URL
+    // URL button
     const urlBtn = document.createElement('button');
     urlBtn.className = 'btn small url';
     urlBtn.title = 'Add vendor URL';
@@ -254,7 +254,7 @@ function render() {
     };
     el.appendChild(urlBtn);
 
-    // Remove line
+    // Remove button
     const remBtn = document.createElement('button');
     remBtn.className = 'btn small rem';
     remBtn.title = 'Remove line';
@@ -273,6 +273,7 @@ function render() {
 
   renderTotals();
 }
+
 
 
 </script>
