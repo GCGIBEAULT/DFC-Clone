@@ -156,11 +156,15 @@ function render(){
     const el = document.createElement('div');
     el.className = 'line';
     el.innerHTML = `
-      <div style="flex:1"><input value="${escape(line.name)}" data-id="${line.id}" class="name"></div>
-      <div style="width:110px;text-align:right"><input type="number" value="${line.amount}" data-id="${line.id}" class="amt"></div>
-      <div style="width:90px"><select class="type" data-id="${line.id}"><option value="auto"${line.type==='auto'?' selected':''}>Auto</option><option value="offline"${line.type==='offline'?' selected':''}>Offline</option></select></div>
-      <div style="width:36px;text-align:center"><button class="url" data-id="${line.id}">${line.vendor_url? '🔗' : '+'}</button></div>
-      <div style="width:36px;text-align:center"><button class="rem" data-id="${line.id}">✕</button></div>
+// Inside el.innerHTML assignment
+<div style="flex:1"><input value="${escape(line.name)}" data-id="${line.id}" class="name"></div>
+<div style="width:110px;text-align:right"><input type="number" value="${line.amount}" data-id="${line.id}" class="amt"></div>
+<div style="width:90px"><select class="type" data-id="${line.id}"><option value="auto"${line.type==='auto'?' selected':''}>Auto</option><option value="offline"${line.type==='offline'?' selected':''}>Offline</option></select></div>
+<div style="width:120px"><input type="date" value="${line.pay_date||''}" data-id="${line.id}" class="pay-date"></div> <!-- ✅ Pay date -->
+<div style="flex:1"><input type="text" value="${line.comment||''}" data-id="${line.id}" class="comment" placeholder="Comment"></div> <!-- ✅ Comment -->
+<div style="width:36px;text-align:center"><button class="url" data-id="${line.id}">${line.vendor_url ? '🔗' : '+'}</button></div>
+<div style="width:36px;text-align:center"><button class="rem" data-id="${line.id}">✕</button></div>
+
     `;
     linesEl.appendChild(el);
 
@@ -182,6 +186,16 @@ function render(){
       if(confirm('Remove this line?')){
         state.paychecks[state.active].lines = state.paychecks[state.active].lines.filter(l=> l.id!==line.id);
         saveState(); render();
+      el.querySelector('.pay-date').addEventListener('change', e => {
+  line.pay_date = e.target.value;
+  saveState();
+});
+
+el.querySelector('.comment').addEventListener('change', e => {
+  line.comment = e.target.value;
+  saveState();
+});
+  
       }
     });
   });
@@ -248,10 +262,19 @@ document.addEventListener('DOMContentLoaded',() => {
   render();
 });
 
-function addLine(){
+function addLine() {
   const id = 'n' + Date.now();
-  state.paychecks[state.active].lines.push({ id, name: 'New item', amount: 0, type: 'offline', vendor_url: '' });
-  saveState(); render();
+  state.paychecks[state.active].lines.push({
+    id,
+    name: 'New item',
+    amount: 0,
+    type: 'offline',
+    vendor_url: '',
+    comment: '',        // ✅ New field
+    pay_date: ''        // ✅ New field
+  });
+  saveState();
+  render();
 }
 
 
