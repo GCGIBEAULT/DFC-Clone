@@ -133,14 +133,25 @@ const defaults = {
 
 let state = loadState();
 
-function loadState(){
-  try{
+function loadState() {
+  try {
     const raw = localStorage.getItem(KEY);
-    return raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(defaults));
-  }catch(e){
+    const base = raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(defaults));
+
+    // Migrate any legacy placeholder name to the new default
+    Object.values(base.paychecks || {}).forEach(pay => {
+      if (!Array.isArray(pay.lines)) return;
+      pay.lines.forEach(line => {
+        if (line.name === 'New item') line.name = 'Input Bill';
+      });
+    });
+
+    return base;
+  } catch (e) {
     return JSON.parse(JSON.stringify(defaults));
   }
 }
+
 
 function saveState(){
   localStorage.setItem(KEY,JSON.stringify(state));
