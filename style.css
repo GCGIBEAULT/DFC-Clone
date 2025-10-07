@@ -1184,5 +1184,9 @@ select:focus {
   cursor: pointer;
   display: inline-block;
 }
+input.amt::placeholder {
+  font-weight: 700;
+  color: #333; /* optional: darken for visibility */
+}
 
 
