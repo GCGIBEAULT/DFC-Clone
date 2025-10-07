@@ -1118,3 +1118,20 @@ footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
   padding: 0;
   line-height: 1.2;
 }
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+  border: 1px solid #ccc;
+  padding: 4px 6px;
+  font-size: 14px;
+  background-color: #fff;
+  cursor: text;
+}
+
+input:focus,
+select:focus {
+  border-color: #0077cc;
+  outline: none;
+  background-color: #eef6ff;
+}
