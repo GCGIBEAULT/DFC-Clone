@@ -157,50 +157,41 @@ function render() {
   pay.lines.forEach(line => {
     const el = document.createElement('div');
     el.className = 'line';
-const isPrompt = line.name === 'Place Bill';
-const nameHtml = isPrompt
-  ? `<div class="prompt-box" onclick="this.outerHTML='<input type=&quot;text&quot; class=&quot;name&quot; data-id=&quot;${line.id}&quot; aria-label=&quot;Bill name&quot; autofocus />'">Place Bill</div>`
-  : `<input type="text" class="name" value="${escape(line.name)}" data-id="${line.id}" aria-label="Bill name" />`;
 
-el.innerHTML = `
-  ${nameHtml}
-  <input type="number" class="amt" value="${line.amount}" style="width:90px" data-id="${line.id}" />
-  <select class="type" data-id="${line.id}">
-    <option value="auto"${line.type==='auto'?' selected':''}>auto</option>
-    <option value="offline"${line.type==='offline'?' selected':''}>offline</option>
-  </select>
-  <input type="date" class="pay-date" value="${line.pay_date||''}" data-id="${line.id}" />
-  <input type="text" class="comment" value="${line.comment||''}" data-id="${line.id}" />
-  <button class="btn small url" title="Add vendor URL">🔗</button>
-  <button class="btn small rem" title="Remove line">✕</button>
-`;
+    const nameEl = document.createElement(line.name === 'Place Bill' ? 'div' : 'input');
+    if (line.name === 'Place Bill') {
+      nameEl.className = 'prompt-box';
+      nameEl.textContent = 'Place Bill';
+      nameEl.onclick = () => {
+        line.name = '';
+        saveState();
+        render();
+      };
+    } else {
+      nameEl.className = 'name';
+      nameEl.value = line.name;
+      nameEl.setAttribute('data-id', line.id);
+      nameEl.setAttribute('aria-label', 'Bill name');
+      nameEl.type = 'text';
+    }
 
-      <div style="flex:1">
-        <input value="${escape(line.name)}" data-id="${line.id}" class="name">
-      </div>
-      <div style="width:110px;text-align:right">
-        <input type="number" value="${line.amount}" data-id="${line.id}" class="amt">
-      </div>
-      <div style="width:90px">
-        <select class="type" data-id="${line.id}">
-          <option value="auto"${line.type==='auto'?' selected':''}>Auto</option>
-          <option value="offline"${line.type==='offline'?' selected':''}>Offline</option>
-        </select>
-      </div>
-      <div style="width:120px">
-        <input type="date" value="${line.pay_date||''}" data-id="${line.id}" class="pay-date">
-      </div>
-      <div style="flex:1">
-        <input type="text" value="${line.comment||''}" data-id="${line.id}" class="comment" placeholder="Comment">
-      </div>
-      <div style="width:36px;text-align:center">
-        <button class="url" data-id="${line.id}">${line.vendor_url ? '🔗' : '+'}</button>
-      </div>
-      <div style="width:36px;text-align:center">
-        <button class="rem" data-id="${line.id}">✕</button>
-      </div>
+    el.appendChild(nameEl);
+
+    el.innerHTML += `
+      <input type="number" class="amt" value="${line.amount}" style="width:90px" data-id="${line.id}" />
+      <select class="type" data-id="${line.id}">
+        <option value="auto"${line.type==='auto'?' selected':''}>auto</option>
+        <option value="offline"${line.type==='offline'?' selected':''}>offline</option>
+      </select>
+      <input type="date" class="pay-date" value="${line.pay_date||''}" data-id="${line.id}" />
+      <input type="text" class="comment" value="${line.comment||''}" data-id="${line.id}" />
+      <button class="btn small url" title="Add vendor URL">🔗</button>
+      <button class="btn small rem" title="Remove line">✕</button>
     `;
+
     linesEl.appendChild(el);
+  });
+}
 
     // Event listeners
     el.querySelector('.name').addEventListener('change', e => {
