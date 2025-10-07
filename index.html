@@ -307,15 +307,14 @@ document.addEventListener('DOMContentLoaded',() => {
 });
 
 function addLine() {
-  const id = 'n' + Date.now();
+  const id = 'n' + Date.now().toString(36);
   state.paychecks[state.active].lines.push({
-    id,
-    name: 'New item',
+    id: id,
+    name: '',           // IMPORTANT: empty so placeholder shows
     amount: 0,
     type: 'offline',
     vendor_url: '',
     comment: '',
-    // ✅ New field
     pay_date: ''
   });
   saveState();
