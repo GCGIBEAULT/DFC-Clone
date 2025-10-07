@@ -157,7 +157,24 @@ function render() {
   pay.lines.forEach(line => {
     const el = document.createElement('div');
     el.className = 'line';
-    el.innerHTML = `
+const isPrompt = line.name === 'Place Bill';
+const nameHtml = isPrompt
+  ? `<div class="prompt-box" onclick="this.outerHTML='<input type=&quot;text&quot; class=&quot;name&quot; data-id=&quot;${line.id}&quot; aria-label=&quot;Bill name&quot; autofocus />'">Place Bill</div>`
+  : `<input type="text" class="name" value="${escape(line.name)}" data-id="${line.id}" aria-label="Bill name" />`;
+
+el.innerHTML = `
+  ${nameHtml}
+  <input type="number" class="amt" value="${line.amount}" style="width:90px" data-id="${line.id}" />
+  <select class="type" data-id="${line.id}">
+    <option value="auto"${line.type==='auto'?' selected':''}>auto</option>
+    <option value="offline"${line.type==='offline'?' selected':''}>offline</option>
+  </select>
+  <input type="date" class="pay-date" value="${line.pay_date||''}" data-id="${line.id}" />
+  <input type="text" class="comment" value="${line.comment||''}" data-id="${line.id}" />
+  <button class="btn small url" title="Add vendor URL">🔗</button>
+  <button class="btn small rem" title="Remove line">✕</button>
+`;
+
       <div style="flex:1">
         <input value="${escape(line.name)}" data-id="${line.id}" class="name">
       </div>
