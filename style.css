@@ -1112,3 +1112,9 @@ footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
 .pay-date {
   width: 140px;
 }
+.first-box .expense-line {
+  margin-top: 12px;
+  margin-bottom: 0;
+  padding: 0;
+  line-height: 1.2;
+}
