@@ -158,7 +158,8 @@ function render() {
     el.className = 'line';
     el.innerHTML = `
       <div style="flex:1">
-        <input value="${escape(line.name)}" data-id="${line.id}" class="name">
+<input value="${escape(line.name)}" data-id="${line.id}" class="name" placeholder="Enter bill name">
+
       </div>
       <div style="width:110px;text-align:right">
         <input type="number" value="${line.amount}" data-id="${line.id}" class="amt">
