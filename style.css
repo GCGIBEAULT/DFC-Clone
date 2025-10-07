@@ -1167,3 +1167,14 @@ select:focus {
   background-color: #fefefe;
   box-shadow: 0 0 0 1px #eee;
 }
+.line {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  background: linear-gradient(to bottom, #f4f1ec, #eae7e2);
+  box-shadow: inset 0 0 0 1px #ccc;
+  border: 1px solid #ddd;
+}
