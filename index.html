@@ -160,9 +160,6 @@ function render() {
           <option value="offline"${line.type === 'offline' ? ' selected' : ''}>Offline</option>
         </select>
       </div>
-      <div style="width:140px">
-        <input type="date" value="${line.pay_date || ''}" data-id="${line.id}" class="pay-date" title="Date bank withdraws payment" aria-label="Pay Date">
-      </div>
       <div style="width:36px;text-align:center">
         <button class="url" data-id="${line.id}">${line.vendor_url ? '🔗' : '+'}</button>
       </div>
@@ -188,11 +185,6 @@ function render() {
       line.type = e.target.value;
       saveState();
       renderTotals();
-    });
-
-    el.querySelector('.pay-date').addEventListener('change', e => {
-      line.pay_date = e.target.value;
-      saveState();
     });
 
     el.querySelector('.url').addEventListener('click', () => {
