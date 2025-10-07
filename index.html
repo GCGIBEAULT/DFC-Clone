@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Digging For Clarity — Private Lab</title>
 <link rel="icon" href="footer_logo.png" type="image/png">
-<link rel="stylesheet" href="style.css">
 <style>
 :root{--bg:#f6f7f9;--card:#fff;--accent:#003366;--muted:#6b7280}
 body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Georgia,serif;background:var(--bg);margin:0;color:#0b1220}
@@ -14,15 +13,18 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Georgia,serif;backgroun
 .masthead h1{font-family:Georgia,serif;color:var(--accent);font-size:2.4rem;margin:0}
 .masthead p{color:var(--muted);margin:6px 0 18px}
 .grid{display:grid;grid-template-columns:1fr;gap:14px}
+@media(min-width:900px){ .grid{grid-template-columns:1fr 420px} }
 .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 4px 14px rgba(7,12,20,0.06)}
 .small{font-size:0.95rem;color:var(--muted)}
 .btn{background:var(--accent);color:#fff;padding:8px 12px;border:0;border-radius:8px;cursor:pointer}
 .paytabs{display:flex;gap:8px;margin-bottom:12px}
-.tab{padding:6px 10px;border-radius:6px;background:#eef2f7;color:#003366;cursor:pointer}
-.tab.active{background:#003366;color:#fff}
-.line{display:flex;gap:8px;align-items:center;padding:8px;border:1px solid #eee;border-radius:6px;background:#fff}
-.line input[type="text"], .line input[type="number"]{border:1px solid #ddd;padding:6px;border-radius:4px}
-.amt.empty{color:#9CA3AF}
+.tab{flex:1;padding:10px;border-radius:8px;text-align:center;background:#f0f4f8;color:#254a68;font-weight:700;cursor:pointer}
+.tab.active{background:var(--accent);color:#fff}
+#budgetRoot{min-height:220px;display:flex;flex-direction:column;gap:8px}
+.line{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:#fbfdff}
+.line input{border:0;background:transparent;outline:none;font-size:15px}
+.line .amt.empty{color:#9CA3AF}
+footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
 </style>
 </head>
 <body>
@@ -42,13 +44,12 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Georgia,serif;backgroun
           <div class="tab" data-pay="15" onclick="switchPay('15')">15th</div>
         </div>
 
-        <!-- Row 1 -->
         <div style="display:flex;gap:12px;align-items:center">
           <div style="display:flex;flex-direction:column;gap:6px">
             <label class="small" style="font-weight:700">Income</label>
             <div style="padding:8px 12px;background:#f4f6f8;border-radius:8px;display:flex;align-items:center;gap:8px;min-width:140px">
               <span style="color:var(--muted);font-size:0.95rem">$</span>
-              <input type="number" id="incomeVal" value="1800" style="width:84px;height:28px;border:0;background:transparent;outline:none;font-size:15px;">
+              <input type="number" id="incomeVal" value="1200" style="width:84px;height:28px;border:0;background:transparent;outline:none;font-size:15px;">
             </div>
           </div>
 
@@ -58,7 +59,6 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Georgia,serif;backgroun
           </div>
         </div>
 
-        <!-- Row 2: lines container and Add button -->
         <div style="margin-top:12px">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <h3 style="margin:0;color:var(--accent)">Lines</h3>
@@ -77,13 +77,19 @@ body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Georgia,serif;backgroun
 </div>
 
 <script>
-/* single main script block — preserves KEY/defaults and UX improvements */
+/* Single main script block — minimal, compatible with existing saved data */
 const KEY = 'dfc:blank:ioioio:v1';
 const defaults = {
   active: '1',
   paychecks: {
-    '1': { income: 1800, lines: [ { id: 'r1', name: 'Rent', amount: 700, type: 'auto', vendor_url: '' } ] },
-    '15': { income: 1800, lines: [] }
+    '1': { income: 1200, lines: [
+      { id: 'r1', name: 'Groceries', amount: 200, type: 'offline', pay_date:'mm / dd / yyyy' },
+      { id: 'r2', name: 'Subscriptions', amount: 40, type: 'auto', pay_date:'mm / dd / yyyy' },
+      { id: 'r3', name: 'Savings', amount: 100, type: 'auto', pay_date:'mm / dd / yyyy' },
+      { id: 'n1', name: 'New item', amount: 0, type: 'offline', pay_date:'mm / dd / yyyy' },
+      { id: 'n2', name: 'New item', amount: 0, type: 'offline', pay_date:'mm / dd / yyyy' }
+    ] },
+    '15': { income: 1200, lines: [] }
   }
 };
 
@@ -94,12 +100,10 @@ function loadState(){
     const raw = localStorage.getItem(KEY);
     if(!raw) return JSON.parse(JSON.stringify(defaults));
     return Object.assign(JSON.parse(JSON.stringify(defaults)), JSON.parse(raw));
-  } catch(e) { return JSON.parse(JSON.stringify(defaults)); }
+  } catch(e){ return JSON.parse(JSON.stringify(defaults)); }
 }
 
-function saveState(){
-  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
-}
+function saveState(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
 
 function escapeHtml(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
@@ -121,50 +125,43 @@ function render(){
   const container = document.getElementById('lines');
   if(!container) return;
   container.innerHTML = '';
+
   pay.lines.forEach(line => {
     const div = document.createElement('div');
     div.className = 'line';
 
-    // Name: if empty show visible placeholder "New item"
-    const nameVal = line.name ? escapeHtml(line.name) : '';
-    const namePlaceholder = line.name ? 'Enter bill name' : 'New item';
+    const nameVal = line.name && line.name !== 'New item' ? escapeHtml(line.name) : '';
+    const namePlaceholder = line.name && line.name !== 'New item' ? 'Enter bill name' : 'New item';
 
-    // Amount: if zero show empty input with muted placeholder
-    const amtIsZero = (Number(line.amount) || 0) === 0;
+    const amtIsZero = (Number(line.amount)||0) === 0;
     const amtVal = amtIsZero ? '' : escapeHtml(line.amount);
     const amtPlaceholder = amtIsZero ? 'enter cost' : '';
 
     div.innerHTML = `
       <input type="text" class="name" value="${nameVal}" placeholder="${namePlaceholder}" data-id="${line.id}" aria-label="Bill name" />
       <input type="number" class="amt ${amtIsZero ? 'empty' : ''}" value="${amtVal}" placeholder="${amtPlaceholder}" style="width:90px" data-id="${line.id}" aria-label="Bill amount" />
-      <button class="btn small" onclick="removeLine('${line.id}')" style="padding:4px 8px">Remove</button>
+      <div style="flex:1"></div>
+      <button class="btn" onclick="removeLine('${line.id}')" style="padding:6px 10px">✕</button>
     `;
     container.appendChild(div);
 
     const nameInput = div.querySelector('.name');
     const amtInput = div.querySelector('.amt');
 
-    if(amtInput && amtInput.value === '') {
-      amtInput.classList.add('empty');
-      amtInput.style.color = '#9CA3AF';
-      amtInput.title = 'Click to add cost';
-    } else if(amtInput) {
-      amtInput.classList.remove('empty');
-      amtInput.style.color = '';
-      amtInput.title = 'Enter cost';
-    }
+    if(amtInput && amtInput.value === '') { amtInput.classList.add('empty'); amtInput.style.color = '#9CA3AF'; amtInput.title = 'Click to add cost'; }
+    else if(amtInput) { amtInput.classList.remove('empty'); amtInput.style.color = ''; amtInput.title = 'Enter cost'; }
 
-    if(nameInput) {
-      nameInput.addEventListener('input', (e)=> {
-        const id=e.target.dataset.id;
+    if(nameInput){
+      nameInput.addEventListener('input', e => {
+        const id = e.target.dataset.id;
         const L = findLine(id);
-        if(L){ L.name = e.target.value; saveState(); }
+        if(L){ L.name = e.target.value || 'New item'; saveState(); }
       });
     }
 
-    if(amtInput) {
-      amtInput.addEventListener('input', (e)=> {
-        const id=e.target.dataset.id;
+    if(amtInput){
+      amtInput.addEventListener('input', e => {
+        const id = e.target.dataset.id;
         const L = findLine(id);
         if(L){
           const v = e.target.value;
@@ -177,21 +174,16 @@ function render(){
           else { e.target.classList.remove('empty'); e.target.style.color = ''; e.target.title = 'Enter cost'; }
         }
       });
-      amtInput.addEventListener('blur', (e)=> {
-        const id=e.target.dataset.id;
+      amtInput.addEventListener('blur', e => {
+        const id = e.target.dataset.id;
         const L = findLine(id);
-        if(L){
-          if(e.target.value === '') { L.amount = 0; saveState(); render(); }
-        }
+        if(L){ if(e.target.value === '') { L.amount = 0; saveState(); render(); } }
       });
     }
   });
 }
 
-function findLine(id){
-  const pay = state.paychecks[state.active];
-  return pay.lines.find(l => l.id === id);
-}
+function findLine(id){ return state.paychecks[state.active].lines.find(l => l.id === id); }
 
 function removeLine(id){
   const pay = state.paychecks[state.active];
@@ -200,54 +192,30 @@ function removeLine(id){
   render();
 }
 
-/* addLine inside main script; works for active pay period (1 or 15) */
-function addLine() {
+function addLine(){
   const pay = state.paychecks[state.active];
   const id = 'n' + Date.now().toString(36);
-  pay.lines.push({
-    id: id,
-    name: '',
-    amount: 0,
-    type: 'offline',
-    vendor_url: '',
-    comment: '',
-    pay_date: ''
-  });
+  pay.lines.push({ id, name: 'New item', amount: 0, type:'offline', pay_date:'mm / dd / yyyy' });
   saveState();
   render();
-
-  // focus the new name input so user immediately sees it's editable
   setTimeout(() => {
-    const el = document.querySelector(`#lines .line:last-child .name`);
-    if(el) { el.focus(); el.select && el.select(); }
+    const el = document.querySelector('#lines .line:last-child .name');
+    if(el){ el.focus(); el.select && el.select(); }
   }, 20);
 }
 
-/* preserved helper */
-function openLocalNews(){
-  const el = document.getElementById('localNews');
-  const url = el && el.value && el.value.trim();
-  if(!url){ alert('Enter a valid local news URL first.'); return; }
-  localStorage.setItem('dfc:local',url);
-  window.open(url,'_blank');
-}
+/* preserved helper (unused here but kept for parity) */
+function openLocalNews(){ const el=document.getElementById('localNews'); const url=el&&el.value&&el.value.trim(); if(!url){ alert('Enter a valid local news URL first.'); return; } localStorage.setItem('dfc:local',url); window.open(url,'_blank'); }
 
-document.addEventListener('DOMContentLoaded',() => {
+document.addEventListener('DOMContentLoaded', () => {
   const saved = localStorage.getItem(KEY);
-  if(saved) {
-    try { state = Object.assign(JSON.parse(JSON.stringify(defaults)), JSON.parse(saved)); } catch(e){}
-  }
+  if(saved){ try { state = Object.assign(JSON.parse(JSON.stringify(defaults)), JSON.parse(saved)); } catch(e){} }
   const income = document.getElementById('incomeVal');
-  if(income){
-    income.addEventListener('change', () => {
-      const pay = state.paychecks[state.active];
-      pay.income = Number(income.value) || 0;
-      saveState();
-      render();
-    });
-  }
+  if(income){ income.addEventListener('change', () => { const pay = state.paychecks[state.active]; pay.income = Number(income.value)||0; saveState(); render(); }); }
   render();
 });
 </script>
+
 </body>
 </html>
+```
