@@ -1173,5 +1173,16 @@ select:focus {
   cursor: pointer;
   display: inline-block;
 }
+.prompt-box {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  color: #6b7280;
+  font-style: italic;
+  background: #fff;
+  cursor: pointer;
+  display: inline-block;
+}
 
 
