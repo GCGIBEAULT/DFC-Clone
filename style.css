@@ -1155,12 +1155,6 @@ select:focus {
   border: 1px solid #ddd;
 }
 .line input.name:placeholder-shown {
-  background-color: #f4f1ec;
-  border: 1px solid #bbb;
-  font-weight: 600;
-  color: #333;
-}
-.line input.name:placeholder-shown {
   background: linear-gradient(to bottom, #f4f1ec, #eae7e2);
   border: 1px solid #bbb;
   font-weight: 600;
@@ -1168,3 +1162,4 @@ select:focus {
   padding: 6px 8px;
   border-radius: 6px;
 }
+
