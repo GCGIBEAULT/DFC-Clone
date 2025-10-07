@@ -1109,3 +1109,6 @@ html,body{height:100%;margin:0;background:var(--bg);color:#0b1220;-webkit-font-s
 
 /* Footer */
 footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
+.pay-date {
+  width: 140px;
+}
