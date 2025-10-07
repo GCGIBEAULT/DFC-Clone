@@ -147,58 +147,89 @@ function saveState(){
 
 function $(s){ return document.querySelector(s); }
 
-function render(){
+function render() {
   const pay = state.paychecks[state.active];
   document.getElementById('incomeInput').value = Math.round(pay.income);
   const linesEl = $('#lines');
   linesEl.innerHTML = '';
+
   pay.lines.forEach(line => {
     const el = document.createElement('div');
     el.className = 'line';
     el.innerHTML = `
-// Inside el.innerHTML assignment
-<div style="flex:1"><input value="${escape(line.name)}" data-id="${line.id}" class="name"></div>
-<div style="width:110px;text-align:right"><input type="number" value="${line.amount}" data-id="${line.id}" class="amt"></div>
-<div style="width:90px"><select class="type" data-id="${line.id}"><option value="auto"${line.type==='auto'?' selected':''}>Auto</option><option value="offline"${line.type==='offline'?' selected':''}>Offline</option></select></div>
-<div style="width:120px"><input type="date" value="${line.pay_date||''}" data-id="${line.id}" class="pay-date"></div> <!-- ✅ Pay date -->
-<div style="flex:1"><input type="text" value="${line.comment||''}" data-id="${line.id}" class="comment" placeholder="Comment"></div> <!-- ✅ Comment -->
-<div style="width:36px;text-align:center"><button class="url" data-id="${line.id}">${line.vendor_url ? '🔗' : '+'}</button></div>
-<div style="width:36px;text-align:center"><button class="rem" data-id="${line.id}">✕</button></div>
-
+      <div style="flex:1">
+        <input value="${escape(line.name)}" data-id="${line.id}" class="name">
+      </div>
+      <div style="width:110px;text-align:right">
+        <input type="number" value="${line.amount}" data-id="${line.id}" class="amt">
+      </div>
+      <div style="width:90px">
+        <select class="type" data-id="${line.id}">
+          <option value="auto"${line.type==='auto'?' selected':''}>Auto</option>
+          <option value="offline"${line.type==='offline'?' selected':''}>Offline</option>
+        </select>
+      </div>
+      <div style="width:120px">
+        <input type="date" value="${line.pay_date||''}" data-id="${line.id}" class="pay-date">
+      </div>
+      <div style="flex:1">
+        <input type="text" value="${line.comment||''}" data-id="${line.id}" class="comment" placeholder="Comment">
+      </div>
+      <div style="width:36px;text-align:center">
+        <button class="url" data-id="${line.id}">${line.vendor_url ? '🔗' : '+'}</button>
+      </div>
+      <div style="width:36px;text-align:center">
+        <button class="rem" data-id="${line.id}">✕</button>
+      </div>
     `;
     linesEl.appendChild(el);
 
+    // Event listeners
     el.querySelector('.name').addEventListener('change', e => {
-      line.name = e.target.value; saveState(); renderTotals();
+      line.name = e.target.value;
+      saveState();
+      renderTotals();
     });
-    el.querySelector('.amt').addEventListener('change', e => {
-      line.amount = Number(e.target.value)||0; saveState(); renderTotals();
-    });
-    el.querySelector('.type').addEventListener('change', e => {
-      line.type = e.target.value; saveState(); renderTotals();
-    });
-    el.querySelector('.url').addEventListener('click', () => {
-      const url = prompt('Vendor URL (billing page or contact)', line.vendor_url||'');
-      if(url===null) return;
-      line.vendor_url = url.trim(); saveState(); render();
-    });
-    el.querySelector('.rem').addEventListener('click', () => {
-      if(confirm('Remove this line?')){
-        state.paychecks[state.active].lines = state.paychecks[state.active].lines.filter(l=> l.id!==line.id);
-        saveState(); render();
-      el.querySelector('.pay-date').addEventListener('change', e => {
-  line.pay_date = e.target.value;
-  saveState();
-});
 
-el.querySelector('.comment').addEventListener('change', e => {
-  line.comment = e.target.value;
-  saveState();
-});
-  
+    el.querySelector('.amt').addEventListener('change', e => {
+      line.amount = Number(e.target.value) || 0;
+      saveState();
+      renderTotals();
+    });
+
+    el.querySelector('.type').addEventListener('change', e => {
+      line.type = e.target.value;
+      saveState();
+      renderTotals();
+    });
+
+    el.querySelector('.pay-date').addEventListener('change', e => {
+      line.pay_date = e.target.value;
+      saveState();
+    });
+
+    el.querySelector('.comment').addEventListener('change', e => {
+      line.comment = e.target.value;
+      saveState();
+    });
+
+    el.querySelector('.url').addEventListener('click', () => {
+      const url = prompt('Vendor URL (billing page or contact)', line.vendor_url || '');
+      if (url === null) return;
+      line.vendor_url = url.trim();
+      saveState();
+      render();
+    });
+
+    el.querySelector('.rem').addEventListener('click', () => {
+      if (confirm('Remove this line?')) {
+        state.paychecks[state.active].lines = state.paychecks[state.active].lines.filter(l => l.id !== line.id);
+        saveState();
+        render();
       }
     });
   });
+
   renderTotals();
 }
 
