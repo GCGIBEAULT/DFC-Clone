@@ -1,5 +1,6 @@
 
 
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -87,9 +88,7 @@ footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
             <div style="padding:8px 12px;background:#f4f6f8;border-radius:8px;display:flex;align-items:center;gap:8px;min-width:140px;">
               <span style="color:var(--muted);font-size:0.95rem;">$</span>
 <div class="income-wrapper">
-<input type="number" id="incomeInput" value="1800" class="income-input">
-
-
+  <input type="number" id="incomeInput" value="1800" class="income-input">
 </div>
 
             </div>
@@ -317,22 +316,19 @@ document.addEventListener('DOMContentLoaded',() => {
   if(savedWeather) document.getElementById('weatherLink').value = savedWeather;
   const savedLocal = localStorage.getItem('dfc:local');
   if(savedLocal) document.getElementById('localNews').value = savedLocal;
-document.getElementById('incomeVal').addEventListener('click', () => {
-  const pay = state.paychecks[state.active];
-  const v = prompt('Edit income for this paycheck', pay.income);
-  if (v !== null) {
-    pay.income = Number(v) || 0;
-    localStorage.setItem('dfc:state', JSON.stringify(state)); // ✅ Persist state
-    render();
-  }
+  document.getElementById('incomeVal').addEventListener('click', () => {
+    const pay = state.paychecks[state.active];
+    const v = prompt('Edit income for this paycheck', pay.income);
+    if(v!==null){ pay.income = Number(v)||0; saveState(); render(); }
+  });
+  render();
 });
-
 
 function addLine() {
   const id = 'n' + Date.now();
   state.paychecks[state.active].lines.push({
     id,
-    name: 'Input Bill',what d
+    name: 'Input Bill',
     amount: 0,
     type: 'offline',
     vendor_url: '',
