@@ -1215,3 +1215,53 @@ input.amt::placeholder {
   background: transparent;
   outline: none;
 }
+.line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+}
+/* === Bill Line Block === */
+.line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.line input {
+  font-size: 14px;
+  padding: 4px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 80px;
+}
+
+.line input.amt {
+  text-align: right;
+  width: 80px;
+}
+
+.line input.pay-date {
+  width: 60px;
+}
+
+.line input.comment {
+  flex: 2;
+}
+
+.line .remove {
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #888;
+  cursor: pointer;
+  padding: 0 6px;
+}
+
+.line .remove:hover {
+  color: #c00;
+}
