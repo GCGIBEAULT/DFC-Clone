@@ -194,7 +194,8 @@ function render() {
         </select>
       </div>
       <div style="width:120px">
-        <input type="date" value="${line.pay_date||''}" data-id="${line.id}" class="pay-date">
+<input type="text" value="${line.pay_date||''}" data-id="${line.id}" class="pay-date" placeholder="e.g. 3rd, 5th">
+
       </div>
       <div style="flex:1">
         <input type="text" value="${line.comment||''}" data-id="${line.id}" class="comment" placeholder="Comment">
