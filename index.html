@@ -37,7 +37,7 @@ footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
   </header>
 
   <!-- ✅ Two Equal Empty Blocks in Grid -->
-  <section class="news-empty-pair" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; margin-top: 1.5em; max-width: 960px; margin-left: auto; margin-right: auto;">
+  <section class="news-empty-pair" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; margin-top: 1.5em; max-width: 960px; margin-left: ; margin-right: ;">
     <div id="weather" class="news-empty-left" style="background-color: #f4f1ec; border: 1px solid #ccc; border-radius: 8px; padding: 1.5em;">
       <h3 style="color:#003366;">Local Weather</h3>
       <p>Paste your favorite weather link below. It’ll stay fixed so you can open it every day with one click.</p>
@@ -123,7 +123,7 @@ const defaults = {
   active: '1',
   paychecks: {
     '1': { income:1800, lines:[
-      {id:'r1',name:'Rent',amount:700,type:'auto',vendor_url:''},
+      {id:'r1',name:'Rent',amount:700,type:'',vendor_url:''},
       {id:'r2',name:'Electric',amount:80,type:'auto',vendor_url:''},
       {id:'r3',name:'Savings',amount:200,type:'auto',vendor_url:''}
     ]},
@@ -169,22 +169,38 @@ function render() {
   const linesEl = $('#lines');
   linesEl.innerHTML = '';
 
-  pay.lines.forEach(line => {
-    const el = document.createElement('div');
-    el.className = 'line';
-    el.innerHTML = `
-      <div style="flex:1">
-        <input value="${escape(line.name)}" data-id="${line.id}" class="name">
+pay.lines.forEach(line => {
+  const el = document.createElement('div');
+  el.className = 'line';
+  el.innerHTML = `
+    <div style="flex:1">
+      <input value="${escape(line.name)}" data-id="${line.id}" class="name">
+    </div>
+    <div style="width:110px;text-align:right">
+      <div class="amount-wrapper">
+        <input type="number"
+               value="${line.amount ? line.amount : ''}"
+               placeholder="Payment"
+               data-id="${line.id}"
+               class="amt">
       </div>
-<div style="width:110px;text-align:right">
-  <div class="amount-wrapper">
-    <input type="number"
-           value="${line.amount ? line.amount : ''}"
-           placeholder="Payment"
-           data-id="${line.id}"
-           class="amt">
-  </div>
-</div>
+    </div>
+    <div class="auto ${line.mode === 'auto' ? 'active' : ''}" data-id="${line.id}" style="margin-left:10px;cursor:pointer;border:1px solid #ccc;padding:2px 6px;border-radius:4px;font-size:12px;">
+      Auto
+    </div>
+  `;
+
+  el.querySelector('.auto').addEventListener('click', e => {
+    const id = e.target.dataset.id;
+    const target = pay.lines.find(l => l.id === id);
+    target.mode = target.mode === 'auto' ? '' : 'auto';
+    saveState();
+    render();
+  });
+
+  container.appendChild(el);
+});
+
 
 
       <div style="width:90px">
@@ -331,12 +347,14 @@ function addLine() {
     amount: 0,
     type: 'offline',
     vendor_url: '',
-    comment: '',        // ✅ New field
-    pay_date: ''        // ✅ New field
+    comment: '',
+    pay_date: '',
+    mode: '' // ✅ Add this line
   });
   saveState();
   render();
 }
+
 
 
 </script>
