@@ -87,7 +87,15 @@ footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
             <div style="padding:8px 12px;background:#f4f6f8;border-radius:8px;display:flex;align-items:center;gap:8px;min-width:140px;">
               <span style="color:var(--muted);font-size:0.95rem;">$</span>
 <div class="income-wrapper">
-  <input type="number" id="incomeInput" value="1800" class="income-input">
+<input type="number" id="incomeInput" class="income-input">
+<script>
+  const incomeInput = document.getElementById('incomeInput');
+  incomeInput.value = localStorage.getItem('income') || 1800;
+  incomeInput.addEventListener('input', () => {
+    localStorage.setItem('income', incomeInput.value);
+  });
+</script>
+
 </div>
 
             </div>
