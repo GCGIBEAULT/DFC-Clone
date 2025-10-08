@@ -220,6 +220,11 @@ function render() {
       saveState();
       renderTotals();
     });
+    el.querySelector('.amt').addEventListener('blur', e => {
+  const val = Number(e.target.value.replace(/\$/g, '')) || 0;
+  e.target.value = `$${val}`;
+});
+
 
     el.querySelector('.type').addEventListener('change', e => {
       line.type = e.target.value;
