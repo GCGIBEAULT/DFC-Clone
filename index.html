@@ -1,345 +1,225 @@
-
-
-
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Digging For Clarity — Private Lab</title>
-<link rel="icon" href="footer_logo.png" type="image/png">
-<link rel="stylesheet" href="style.css">
-<style>
-:root{--bg:#f6f7f9;--card:#fff;--accent:#003366;--muted:#6b7280}
-body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Georgia,serif;background:var(--bg);margin:0;color:#0b1220}
-.wrap{max-width:960px;margin:0 auto;padding:20px}
-.masthead{text-align:center;margin-top:28px}
-.masthead h1{font-family:Georgia,serif;color:var(--accent);font-size:2.4rem;margin:0}
-.masthead p{color:var(--muted);margin:6px 0 18px}
-.grid{display:grid;grid-template-columns:1fr;gap:14px}
-@media(min-width:900px){ .grid{grid-template-columns:1fr 420px} }
-.card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 4px 14px rgba(7,12,20,0.06)}
-.small{font-size:0.95rem;color:var(--muted)}
-.btn{background:var(--accent);color:#fff;padding:8px 12px;border:0;border-radius:8px}
-#budgetRoot{min-height:220px;display:flex;flex-direction:column;gap:8px}
-.paytabs{display:flex;gap:8px}
-.tab{flex:1;padding:10px;border-radius:8px;text-align:center;background:#f0f4f8;color:#254a68;font-weight:700}
-.tab.active{background:var(--accent);color:#fff}
-.line{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:#fbfdff}
-.line input{border:0;background:transparent;outline:none;font-size:15px}
-footer{margin-top:28px;text-align:center;color:var(--muted);font-size:0.95rem}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Digging For Clarity — Private Lab</title>
+  <link rel="icon" href="footer_logo.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --card: #fff;
+      --accent: #003366;
+      --muted: #6b7280;
+    }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Georgia, serif;
+      background: var(--bg);
+      margin: 0;
+      color: #0b1220;
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .masthead {
+      text-align: center;
+      margin-top: 28px;
+    }
+    .masthead h1 {
+      font-family: Georgia, serif;
+      color: var(--accent);
+      font-size: 2.4rem;
+      margin: 0;
+    }
+    .masthead p {
+      color: var(--muted);
+      margin: 6px 0 18px;
+    }
+    .card {
+      background: var(--card);
+      padding: 14px;
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(7, 12, 20, 0.06);
+    }
+    .btn {
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 12px;
+      border: 0;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .paytabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .tab {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      background: #f0f4f8;
+      color: #254a68;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .tab.active {
+      background: var(--accent);
+      color: #fff;
+    }
+    .line {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px;
+      border-radius: 8px;
+      background: #fbfdff;
+      margin-bottom: 6px;
+    }
+    .line input {
+      border: 0;
+      background: transparent;
+      outline: none;
+      font-size: 15px;
+      flex: 1;
+    }
+    .income-wrapper {
+      margin-bottom: 16px;
+    }
+    footer {
+      margin-top: 28px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <header class="masthead">
-    <h1>Digging For Clarity</h1>
-    <p class="small">Drama-free news, weather, and community updates with modular clarity.</p>
-  </header>
+  <div class="wrap">
+    <header class="masthead">
+      <h1>Digging For Clarity</h1>
+      <p class="small">Drama-free news, weather, and community updates with modular clarity.</p>
+    </header>
 
-  <!-- ✅ Two Equal Empty Blocks in Grid -->
-  <section class="news-empty-pair" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5em; margin-top: 1.5em; max-width: 960px; margin-left: auto; margin-right: auto;">
-    <div id="weather" class="news-empty-left" style="background-color: #f4f1ec; border: 1px solid #ccc; border-radius: 8px; padding: 1.5em;">
-      <h3 style="color:#003366;">Local Weather</h3>
-      <p>Paste your favorite weather link below. It’ll stay fixed so you can open it every day with one click.</p>
-      <input type="text" id="weatherLinkClone" placeholder="Paste your favorite weather link here" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
-      <div style="display: none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
-      <button style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open Weather</button>
-
-      <div style="margin-top: 1.5em;">
-        <h4 style="color:#003366;">Need Directions or Flight Info?</h4>
-        <p>Click below to launch your preferred traffic or flight tracker:</p>
-        <div style="font-weight: bold;">
-          <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" style="color: #0645AD; text-decoration: underline;">Google Maps</a>
-          <a href="https://www.waze.com" target="_blank" rel="noopener noreferrer" style="color: #0645AD; text-decoration: underline;">Waze</a>
-          <a href="https://www.flightaware.com" target="_blank" rel="noopener noreferrer" style="color: #0645AD; text-decoration: underline;">FlightAware</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="news-empty-right" style="background-color: #f4f1ec; border: 1px solid #ccc; border-radius: 8px; padding: 1.75em;">
-      <h3 style="color:#003366;">Local & State News</h3>
-      <p>Paste your favorite local and state news links below. They’ll stay fixed so you can open them every day with one click.</p>
-      <label for="localNewsClone" style="font-weight: bold;">Local News Link:</label>
-      <input type="text" id="localNewsClone" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
-      <div style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
-      <button style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open Local News</button>
-
-      <label for="stateNewsClone" style="font-weight: bold; margin-top: 1em; display: block;">State News Link:</label>
-      <input type="text" id="stateNewsClone" style="width: 100%; padding: 0.5em; margin-bottom: 0.5em; border: 1px solid #ccc; border-radius: 4px;">
-      <div style="display:none; font-size: 0.9em; color: #990000; margin-bottom: 0.5em;">Add last URL</div>
-      <button style="padding: 0.5em 1em; background-color: #003366; color: #fff; border: none; border-radius: 4px;">Open State News</button>
-    </div>
-  </section>
-
-  <main style="margin-top:18px" role="main">
-    <div class="card" id="primaryCard">
-      <h2 style="margin:0 0 8px;color:var(--accent)">IOIOIO</h2>
-      <div id="budgetRoot" aria-live="polite">
-        <div class="paytabs" role="tablist" aria-label="Pay periods">
-          <div class="tab active" data-pay="1" onclick="switchPay('1')">1st</div>
-          <div class="tab" data-pay="15" onclick="switchPay('15')">15th</div>
-        </div>
-
-        <!-- Row 1: income input and Expenses readout -->
-        <div style="display:flex;gap:12px;align-items:center;">
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <label class="small" style="font-weight:700;">Income</label>
-            <div style="padding:8px 12px;background:#f4f6f8;border-radius:8px;display:flex;align-items:center;gap:8px;min-width:140px;">
-              <span style="color:var(--muted);font-size:0.95rem;">$</span>
-<div class="income-wrapper">
-  <input type="number" id="incomeInput" value="1800" class="income-input">
-</div>
-
-            </div>
-          </div>
-
-          <div style="display:flex;flex-direction:column;gap:6px;">
-            <label class="small" style="font-weight:700;">Expenses</label>
-            <div id="expensesVal" class="small" style="padding:8px 12px;background:#f4f6f8;border-radius:8px;min-width:120px;">$0</div>
-          </div>
-        </div>
-
-        <!-- Row 2: lines container -->
-        <div id="lines" style="margin-top:12px;display:flex;flex-direction:column;gap:8px;"></div>
-
-        <!-- Add line button -->
-        <div style="display:flex;gap:8px;margin-top:10px;justify-content:space-between;">
-          <div style="display:flex;gap:8px;">
-            <button class="btn" onclick="addLine()">+ Add line</button>
-          </div>
-        </div>
+    <section class="card">
+      <div class="income-wrapper">
+        <input type="number" id="incomeInput" class="income-input" placeholder="Enter your income">
       </div>
 
-      <footer>
-        <div class="small">Private workspace • Local-first testing • Your backup is safe</div>
-      </footer>
-    </div>
-  </main>
-</div>
-
-<script>
-const KEY = 'dfc:blank:ioioio:v1';
-const defaults = {
-  active: '1',
-  paychecks: {
-    '1': { income:1800, lines:[
-      {id:'r1',name:'Rent',amount:700,type:'auto',vendor_url:''},
-      {id:'r2',name:'Electric',amount:80,type:'auto',vendor_url:''},
-      {id:'r3',name:'Savings',amount:200,type:'auto',vendor_url:''}
-    ]},
-    '15': { income:1200, lines:[
-      {id:'p1',name:'Groceries',amount:200,type:'offline',vendor_url:''},
-      {id:'p2',name:'Subscriptions',amount:40,type:'auto',vendor_url:''},
-      {id:'p3',name:'Savings',amount:100,type:'auto',vendor_url:''}
-    ]}
-  }
-};
-
-let state = loadState();
-
-function loadState() {
-  try {
-    const raw = localStorage.getItem(KEY);
-    const base = raw ? JSON.parse(raw) : JSON.parse(JSON.stringify(defaults));
-
-    // Migrate any legacy placeholder name to the new default
-    Object.values(base.paychecks || {}).forEach(pay => {
-      if (!Array.isArray(pay.lines)) return;
-      pay.lines.forEach(line => {
-        if (line.name === 'New item') line.name = 'Input Bill';
-      });
-    });
-
-    return base;
-  } catch (e) {
-    return JSON.parse(JSON.stringify(defaults));
-  }
-}
-
-
-function saveState(){
-  localStorage.setItem(KEY,JSON.stringify(state));
-}
-
-function $(s){ return document.querySelector(s); }
-
-function render() {
-  const pay = state.paychecks[state.active];
-  document.getElementById('incomeInput').value = Math.round(pay.income);
-  const linesEl = $('#lines');
-  linesEl.innerHTML = '';
-
-  pay.lines.forEach(line => {
-    const el = document.createElement('div');
-    el.className = 'line';
-    el.innerHTML = `
-      <div style="flex:1">
-        <input value="${escape(line.name)}" data-id="${line.id}" class="name">
+      <div class="paytabs">
+        <div class="tab" data-pay="1" onclick="switchPay('1')">1st</div>
+        <div class="tab" data-pay="15" onclick="switchPay('15')">15th</div>
       </div>
-<div style="width:110px;text-align:right">
-  <div class="amount-wrapper">
-    <input type="number"
-           value="${line.amount ? line.amount : ''}"
-           placeholder="Payment"
-           data-id="${line.id}"
-           class="amt">
+
+      <div id="linesContainer"></div>
+      <button class="btn" onclick="addLine()">+ Add line</button>
+
+      <div style="margin-top: 12px;">
+        <p>Expenses: <span id="expensesVal">$0</span></p>
+        <p>Leftover: <span id="leftoverVal">$0</span></p>
+      </div>
+    </section>
+
+    <footer>
+      <p>Built with clarity and consequence.</p>
+    </footer>
   </div>
-</div>
 
+  <script>
+    const state = {
+      active: '1',
+      paychecks: {
+        '1': { income: 0, lines: [] },
+        '15': { income: 0, lines: [] }
+      }
+    };
 
-      <div style="width:90px">
-        <select class="type" data-id="${line.id}">
-          <option value="auto"${line.type==='auto'?' selected':''}>Auto</option>
-          <option value="offline"${line.type==='offline'?' selected':''}>Offline</option>
-        </select>
-      </div>
-      <div style="width:120px">
-<input type="text" value="${line.pay_date||''}" data-id="${line.id}" class="pay-date" placeholder="e.g. 3rd, 5th">
+    function saveState() {
+      localStorage.setItem('dfc:ioioio:v1', JSON.stringify(state));
+    }
 
-      </div>
-      <div style="flex:1">
-        <input type="text" value="${line.comment||''}" data-id="${line.id}" class="comment" placeholder="Comment">
-      </div>
-      <div style="width:36px;text-align:center">
-        <button class="url" data-id="${line.id}">${line.vendor_url ? '🔗' : '+'}</button>
-      </div>
-      <div style="width:36px;text-align:center">
-        <button class="rem" data-id="${line.id}">✕</button>
-      </div>
-    `;
-    linesEl.appendChild(el);
+    function loadState() {
+      const saved = localStorage.getItem('dfc:ioioio:v1');
+      if (saved) Object.assign(state, JSON.parse(saved));
+    }
 
-    // Event listeners
-    el.querySelector('.name').addEventListener('change', e => {
-      line.name = e.target.value;
-      saveState();
-      renderTotals();
-    });
+    function switchPay(p) {
+      state.active = p;
+      document.querySelectorAll('.tab').forEach(t =>
+        t.classList.toggle('active', t.dataset.pay === p)
+      );
+      render();
+    }
 
-    el.querySelector('.amt').addEventListener('change', e => {
-      line.amount = Number(e.target.value) || 0;
-      saveState();
-      renderTotals();
-    });
-    el.querySelector('.amt').addEventListener('blur', e => {
-  const val = Number(e.target.value.replace(/\$/g, '')) || 0;
-  e.target.value = `$${val}`;
-});
-
-
-    el.querySelector('.type').addEventListener('change', e => {
-      line.type = e.target.value;
-      saveState();
-      renderTotals();
-    });
-
-    el.querySelector('.pay-date').addEventListener('change', e => {
-      line.pay_date = e.target.value;
-      saveState();
-    });
-
-    el.querySelector('.comment').addEventListener('change', e => {
-      line.comment = e.target.value;
-      saveState();
-    });
-
-    el.querySelector('.url').addEventListener('click', () => {
-      const url = prompt('Vendor URL (billing page or contact)', line.vendor_url || '');
-      if (url === null) return;
-      line.vendor_url = url.trim();
+    function addLine() {
+      const newLine = {
+        id: 'line' + Date.now(),
+        name: 'New Item',
+        amount: 0,
+        type: 'manual',
+        vendor_url: ''
+      };
+      state.paychecks[state.active].lines.push(newLine);
       saveState();
       render();
-    });
+    }
 
-    el.querySelector('.rem').addEventListener('click', () => {
-      if (confirm('Remove this line?')) {
-        state.paychecks[state.active].lines = state.paychecks[state.active].lines.filter(l => l.id !== line.id);
+    function render() {
+      const pay = state.paychecks[state.active];
+      const container = document.getElementById('linesContainer');
+      container.innerHTML = '';
+
+      pay.lines.forEach(line => {
+        const el = document.createElement('div');
+        el.className = 'line';
+        el.innerHTML = `
+          <input class="name" value="${line.name}">
+          <input class="amt" type="number" value="${line.amount}">
+        `;
+        el.querySelector('.name').addEventListener('input', e => {
+          line.name = e.target.value;
+          saveState();
+        });
+        el.querySelector('.amt').addEventListener('input', e => {
+          line.amount = Number(e.target.value) || 0;
+          saveState();
+          renderTotals();
+        });
+        container.appendChild(el);
+      });
+
+      bindIncomeInput();
+      renderTotals();
+    }
+
+    function bindIncomeInput() {
+      const incomeInput = document.getElementById('incomeInput');
+      if (!incomeInput) return;
+
+      incomeInput.value = state.paychecks[state.active].income || '';
+      incomeInput.addEventListener('input', () => {
+        state.paychecks[state.active].income = Number(incomeInput.value) || 0;
         saveState();
-        render();
-      }
-    });
-  });
+        renderTotals();
+      });
+    }
 
-  renderTotals();
-}
+    function renderTotals() {
+      const pay = state.paychecks[state.active];
+      const income = Number(pay.income) || 0;
+      const expenses = pay.lines.reduce((sum, line) => sum + (Number(line.amount) || 0), 0);
+      document.getElementById('expensesVal').textContent = '$' + expenses;
+      document.getElementById('leftoverVal').textContent = '$' + (income - expenses);
+    }
 
-function renderTotals(){
-  const pay = state.paychecks[state.active];
-  const income = Number(pay.income)||0;
-  const expenses = pay.lines.reduce((s,l)=> s + (Number(l.amount)||0),0);
-  $('#expensesVal').textContent = '$' + Math.round(expenses);
-  const leftover = income - expenses;
-  saveState();
-}
+    window.addLine = addLine;
 
-function switchPay(p){
-  state.active = p;
-  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active', t.dataset.pay===p));
-  render();
-}
-
-function exportSnapshot(){
-  const pay = state.paychecks[state.active];
-  const snap = {payId:state.active, income:pay.income, lines:pay.lines, created:new Date().toISOString()};
-  const blob = new Blob([JSON.stringify(snap,null,2)],{type:'application/json'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `snapshot_${state.active}.json`;
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
-  URL.revokeObjectURL(url);
-}
-
-function escape(s){ return String(s||'').replace(/\&/g,'&amp;').replace(/\</g,'&lt;').replace(/"/g,'&quot;'); }
-
-function openWeather(){
-  const el = document.getElementById('weatherLink');
-  const url = el.value && el.value.trim();
-  if(!url){ alert('Enter a valid weather URL first.'); return; }
-  localStorage.setItem('dfc:weather',url);
-  window.open(url,'_blank');
-}
-
-function openLocalNews(){
-  const el = document.getElementById('localNews');
-  const url = el.value && el.value.trim();
-  if(!url){ alert('Enter a valid local news URL first.'); return; }
-  localStorage.setItem('dfc:local',url);
-  window.open(url,'_blank');
-}
-
-document.addEventListener('DOMContentLoaded',() => {
-  const savedWeather = localStorage.getItem('dfc:weather');
-  if(savedWeather) document.getElementById('weatherLink').value = savedWeather;
-  const savedLocal = localStorage.getItem('dfc:local');
-  if(savedLocal) document.getElementById('localNews').value = savedLocal;
-  document.getElementById('incomeVal').addEventListener('click', () => {
-    const pay = state.paychecks[state.active];
-    const v = prompt('Edit income for this paycheck', pay.income);
-    if(v!==null){ pay.income = Number(v)||0; saveState(); render(); }
-  });
-  render();
-});
-
-function addLine() {
-  const id = 'n' + Date.now();
-  state.paychecks[state.active].lines.push({
-    id,
-    name: 'Input Bill',
-    amount: 0,
-    type: 'offline',
-    vendor_url: '',
-    comment: '',        // ✅ New field
-    pay_date: ''        // ✅ New field
-  });
-  saveState();
-  render();
-}
-
-
-</script>
+    loadState();
+    render();
+  </script>
 </body>
 </html>
