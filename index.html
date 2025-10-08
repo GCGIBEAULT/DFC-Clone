@@ -316,22 +316,19 @@ document.addEventListener('DOMContentLoaded',() => {
   if(savedWeather) document.getElementById('weatherLink').value = savedWeather;
   const savedLocal = localStorage.getItem('dfc:local');
   if(savedLocal) document.getElementById('localNews').value = savedLocal;
-document.getElementById('incomeVal').addEventListener('click', () => {
-  const pay = state.paychecks[state.active];
-  const v = prompt('Edit income for this paycheck', pay.income);
-  if (v !== null) {
-    pay.income = Number(v) || 0;
-    localStorage.setItem('dfc:state', JSON.stringify(state)); // ✅ Persist state
-    render();
-  }
+  document.getElementById('incomeVal').addEventListener('click', () => {
+    const pay = state.paychecks[state.active];
+    const v = prompt('Edit income for this paycheck', pay.income);
+    if(v!==null){ pay.income = Number(v)||0; saveState(); render(); }
+  });
+  render();
 });
-
 
 function addLine() {
   const id = 'n' + Date.now();
   state.paychecks[state.active].lines.push({
     id,
-    name: 'Input Bill',what d
+    name: 'Input Bill',
     amount: 0,
     type: 'offline',
     vendor_url: '',
